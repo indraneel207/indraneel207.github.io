@@ -13,7 +13,16 @@ export default function WorkExperience() {
         <Fade bottom duration={1000} distance="20px">
           <div className="experience-container" id="workExperience">
             <div>
-              <h1 className="experience-heading">Experiences</h1>
+              <h1 className="experience-heading">
+                Experiences
+                <img
+                  width="50"
+                  src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/seedling.gif"
+                  alt="Experiences emoji"
+                  style={{ marginLeft: "1rem" }}
+                />
+              </h1>
+
               <div className="experience-cards-div">
                 {workExperiences.experience.map((card, i) => {
                   return (

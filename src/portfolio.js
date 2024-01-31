@@ -20,10 +20,10 @@ const illustration = {
 };
 
 const greeting = {
-  username: "Saad Pasta",
-  title: "Hi all, I'm Saad",
+  username: "Indraneel Vairagare",
+  title: "Hey, I'm Indraneel",
   subTitle: emoji(
-    "A passionate Full Stack Software Developer 🚀 having an experience of building Web and Mobile applications with JavaScript / Reactjs / Nodejs / React Native and some other cool libraries and frameworks."
+    "I'm a CS grad at ASU 🔱 and proudly rock the Sun Devil vibe. Tech enthusiast, coding ninja, and full-stack developer with over 3 years of professional mischief. I geek out on AI & ML, love solving problems, and believe in the magic of code. Let's build something awesome together!"
   ),
   resumeLink:
     "https://drive.google.com/file/d/1ofFdKF_mqscH8WvXkSObnVvC9kK7Ldlu/view?usp=sharing", // Set to empty to hide the button
@@ -33,15 +33,13 @@ const greeting = {
 // Social Media Links
 
 const socialMediaLinks = {
-  github: "https://github.com/saadpasta",
-  linkedin: "https://www.linkedin.com/in/saadpasta/",
-  gmail: "saadpasta70@gmail.com",
-  gitlab: "https://gitlab.com/saadpasta",
-  facebook: "https://www.facebook.com/saad.pasta7",
-  medium: "https://medium.com/@saadpasta",
-  stackoverflow: "https://stackoverflow.com/users/10422806/saad-pasta",
-  // Instagram, Twitter and Kaggle are also supported in the links!
-  // To customize icons and social links, tweak src/components/SocialMedia
+  github: "https://github.com/indraneel207",
+  linkedin: "https://www.linkedin.com/in/indraneelvairagare/",
+  gmail: "indraneel207@gmail.com",
+  instagram: "https://www.instagram.com/indraneel_vairagare_/",
+  facebook: "https://www.facebook.com/indraneel.vairagare/",
+  // leetcode: "https://leetcode.com/indraneel207/",
+  twitter: "https://twitter.com/indraneel207",
   display: true // Set true to display this section, defaults to false
 };
 
@@ -49,15 +47,14 @@ const socialMediaLinks = {
 
 const skillsSection = {
   title: "What I do",
-  subTitle: "CRAZY FULL STACK DEVELOPER WHO WANTS TO EXPLORE EVERY TECH STACK",
+  subTitle: "Crafting Awesome Tech Experiences!",
   skills: [
-    emoji(
-      "⚡ Develop highly interactive Front end / User Interfaces for your web and mobile applications"
-    ),
-    emoji("⚡ Progressive Web Applications ( PWA ) in normal and SPA Stacks"),
-    emoji(
-      "⚡ Integration of third party services such as Firebase/ AWS / Digital Ocean"
-    )
+    emoji("🎨 Crafting dazzling user interfaces and seamless experiences."),
+    emoji("🚀 Ensuring peak performance on the back-end and orchestrating cloud magic."),
+    emoji("🔍 Navigating data realms and turning information into actionable insights."),
+    emoji("🧙‍♂️ Delving into Applied ML and Data Science to create intelligent solutions."),
+    emoji("🎉 Leading projects with expertise in Web Services, APIs, Agile, and Scrum."),
+    emoji("🏰 Securing the kingdom through design patterns and meticulous documentation."),
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
@@ -65,7 +62,15 @@ https://fontawesome.com/icons?d=gallery */
 
   softwareSkills: [
     {
-      skillName: "html-5",
+      skillName: "JavaScript",
+      fontAwesomeClassname: "fab fa-js"
+    },
+    {
+      skillName: "python",
+      fontAwesomeClassname: "fab fa-python"
+    },
+    {
+      skillName: "HTML-5",
       fontAwesomeClassname: "fab fa-html5"
     },
     {
@@ -73,24 +78,20 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fab fa-css3-alt"
     },
     {
-      skillName: "sass",
-      fontAwesomeClassname: "fab fa-sass"
-    },
-    {
-      skillName: "JavaScript",
-      fontAwesomeClassname: "fab fa-js"
-    },
-    {
       skillName: "reactjs",
       fontAwesomeClassname: "fab fa-react"
     },
     {
-      skillName: "nodejs",
-      fontAwesomeClassname: "fab fa-node"
+      skillName: "VueJS",
+      fontAwesomeClassname: "fab fa-vuejs"
     },
     {
-      skillName: "swift",
-      fontAwesomeClassname: "fab fa-swift"
+      skillName: "Java",
+      fontAwesomeClassname: "fab fa-java"
+    },
+    {
+      skillName: "nodejs",
+      fontAwesomeClassname: "fab fa-node"
     },
     {
       skillName: "npm",
@@ -101,6 +102,18 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fas fa-database"
     },
     {
+      skillName: "MongoDB",
+      fontAwesomeClassname: "fas fa-server"
+    },
+    {
+      skillName: "TensorFlow",
+      fontAwesomeClassname: "fas fa-laptop-code"
+    },
+    {
+      skillName: "OpenCV",
+      fontAwesomeClassname: "fas fa-film"
+    },
+    {
       skillName: "aws",
       fontAwesomeClassname: "fab fa-aws"
     },
@@ -109,12 +122,16 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fas fa-fire"
     },
     {
-      skillName: "python",
-      fontAwesomeClassname: "fab fa-python"
-    },
-    {
       skillName: "docker",
       fontAwesomeClassname: "fab fa-docker"
+    },
+    {
+      skillName: "git",
+      fontAwesomeClassname: "fab fa-git"
+    },
+    {
+      skillName: "Design Patterns",
+      fontAwesomeClassname: "fas fa-hashtag"
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -126,23 +143,30 @@ const educationInfo = {
   display: true, // Set false to hide this section, defaults to true
   schools: [
     {
-      schoolName: "Harvard University",
-      logo: require("./assets/images/harvardLogo.png"),
-      subHeader: "Master of Science in Computer Science",
-      duration: "September 2017 - April 2019",
-      desc: "Participated in the research of XXX and published 3 papers.",
+      schoolName: "Arizona State University",
+      logo: require("./assets/images/Arizona_State_University_seal.png"),
+      subHeader: "Master of Science in Computer Science(MSCS)",
+      duration: "August 2022 - May 2024",
+      desc: "Pursued an advanced CS degree, diving into a mix of cool projects exploring cutting-edge tech and solving problems in creative ways.",
       descBullets: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      ]
+        "Rocked courses like Artificial Intelligence, Data Mining, Cloud Computing, and a bunch more.",
+        "Kept the grades game strong, pulling off multiple A+ scores and an awesome CGPA of 3.9.",
+        "Did the TA gig for courses CSE 110 and CSE 205, rolling with Prof. Ryan Meuth.",
+        "Juggled being a lively member of both the Google Developers Club and the IEEE Club at ASU."
+      ]      
     },
     {
-      schoolName: "Stanford University",
-      logo: require("./assets/images/stanfordLogo.png"),
-      subHeader: "Bachelor of Science in Computer Science",
-      duration: "September 2013 - April 2017",
-      desc: "Ranked top 10% in the program. Took courses about Software Engineering, Web Security, Operating Systems, ...",
-      descBullets: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit"]
+      schoolName: "Jawaharlal Nehru Technological University, Hyderabad, India",
+      logo: require("./assets/images/JNTU_Hyderabad_logo.png"),
+      subHeader: "Bachelor of Technology in Computer Science & Engineering(B.Tech CSE)",
+      duration: "August 2016 - September 2020",
+      desc: "Graduated in the top 10% of the pack from the prestigious CMR College of Engineering & Technology (CMRCET).",
+      descBullets: [
+        "Dived into courses like C Programming, Data Structures & Algorithms, Software Engineering, Web Security, and Operating Systems.",
+        "Nailed it with a killer GPA of 9.23/10, snagging that sweet Merit recognition.",
+        "Teamed up with the College Principal to guide buddies, boosting coding skills all the way.",
+        "Wore the hat of President at the Events Management Club, cooking up some seriously cool activities."
+      ]
     }
   ]
 };
@@ -165,7 +189,7 @@ const techStack = {
       progressPercentage: "60%"
     }
   ],
-  displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
+  displayCodersrank: true // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
 };
 
 // Work experience section
@@ -174,29 +198,51 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "Software Engineer",
-      company: "Facebook",
-      companylogo: require("./assets/images/facebookLogo.png"),
-      date: "June 2018 – Present",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      role: "SDE2 / Team Lead",
+      company: "actyv.ai",
+      companylogo: require("./assets/images/actyv_logo.png"),
+      date: "Apr 2022 – Jul 2022",
+      desc:'(Software Ninja & Team Leader)',
       descBullets: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "Led a crew of 6 rockstars to build kick-ass full stack web apps from scratch.",
+        "Architected 70% of a new project's backend, making it faster, stronger, and more secure than ever.",
+        "Leveled up application security, slashed potential threats by 80%, and scored the team some SOC 2 and ISO 27001 certifications."
       ]
     },
     {
-      role: "Front-End Developer",
-      company: "Quora",
-      companylogo: require("./assets/images/quoraLogo.png"),
-      date: "May 2017 – May 2018",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "SDE1",
+      company: "actyv.ai",
+      companylogo: require("./assets/images/actyv_logo.png"),
+      date: "Jun 2021 – Mar 2022",
+      desc:"(Code Wizard & SaaS Sorcerer)",
+      descBullets: [
+        "Magically transformed the 'Onboarding & Admin Portal' into SaaS goodness loved by 10 top FMCG companies.",
+        "Made user onboarding a breeze by throwing in document parsers, KYC services, 3rd party bank APIs, and a custom e-sign service. Result? 100% virtual and paper-free onboarding, saving around $100,000.",
+        "Guided the team in conjuring a Single Sign-On (SSO) spell to manage RBAC-based user systems across 6 applications."
+      ]
     },
     {
-      role: "Software Engineer Intern",
-      company: "Airbnb",
-      companylogo: require("./assets/images/airbnbLogo.png"),
-      date: "Jan 2015 – Sep 2015",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "Assoc. SDE",
+      company: "actyv.ai",
+      companylogo: require("./assets/images/actyv_logo.png"),
+      date: "Jul 2020 – May 2021",
+      desc: "(Coding Sorcerer's Apprentice)",
+      descBullets: [
+        "Solved the 'Delegation of user requests' puzzle, seamlessly integrating it into 2 MERN-based web apps that became the company's pride and joy.",
+        "Teamed up to create actyv Score, a DS application predicting creditworthiness with an 80% accuracy charm.",
+        "Crafted a fast & efficient 3rd party app add-on for instant data dumps, making network transfers feel like magic (<1.5s)."
+      ]
+    },
+    {
+      role: "SDE Intern",
+      company: "actyv.ai",
+      companylogo: require("./assets/images/actyv_logo.png"),
+      date: "Oct 2019 – Jun 2020",
+      desc: "(Code Sorcerer in Training)",
+      descBullets: [
+        "Collaborated on building full-stack web apps & multilingual Android magic for the Neo-Banking sectors.",
+        "Dove into Coding standards, Design patterns, and Testing methods, contributing to the magical arts of software engineering on projects like ‘Jandhan’, ‘Actyv Pro’, etc."
+      ]
     }
   ]
 };
@@ -324,7 +370,7 @@ const blogSection = {
         "React is a JavaScript library for building User Interface. It is maintained by Facebook and a community of individual developers and companies."
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Talks Sections
@@ -343,7 +389,7 @@ const talkSection = {
       event_url: "https://www.facebook.com/events/2339906106275053/"
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Podcast Section
@@ -354,27 +400,27 @@ const podcastSection = {
 
   // Please Provide with Your Podcast embeded Link
   podcast: [
-    "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
+    ""
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 const contactInfo = {
   title: emoji("Contact Me ☎️"),
   subtitle:
     "Discuss a project or just want to say hi? My Inbox is open for all.",
-  number: "+92-0000000000",
-  email_address: "saadpasta70@gmail.com"
+  number: "",
+  email_address: "indraneel207@gmail.com"
 };
 
 // Twitter Section
 
 const twitterDetails = {
   userName: "twitter", //Replace "twitter" with your twitter username without @
-  display: true // Set true to display this section, defaults to false
+  display: false // Set true to display this section, defaults to false
 };
 
-const isHireable = false; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
+const isHireable = true; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
 
 export {
   illustration,
