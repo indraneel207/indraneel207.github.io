@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dd4366ed.css",
+    "main.js": "/static/js/main.87e73f86.js",
+    "static/css/64.bba8fa55.chunk.css": "/static/css/64.bba8fa55.chunk.css",
+    "static/js/64.34a561c0.chunk.js": "/static/js/64.34a561c0.chunk.js",
+    "static/css/769.b3cbb36b.chunk.css": "/static/css/769.b3cbb36b.chunk.css",
+    "static/js/769.e5673db3.chunk.js": "/static/js/769.e5673db3.chunk.js",
+    "static/media/onboarding_portal.png": "/static/media/onboarding_portal.b3f3eee6c00305b5da1f.png",
+    "static/media/Shrivatsava_labs.png": "/static/media/Shrivatsava_labs.42f6c5521ccf87ed9b67.png",
+    "static/media/WindSong-Regular.ttf": "/static/media/WindSong-Regular.834aeccec6ff5dcbedc3.ttf",
+    "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
+    "static/media/Welcome_logo.gif": "/static/media/Welcome_logo.354047624999ab1e9f57.gif",
+    "static/media/aws_logo.png": "/static/media/aws_logo.c3a8553d2aadc3f80df7.png",
+    "static/media/IBM_logo.jpg": "/static/media/IBM_logo.9a301d7876a4e03e129c.jpg",
+    "static/media/Agustina.woff": "/static/media/Agustina.eb0c59dda4cc308cba96.woff",
+    "static/media/JNTU_Hyderabad_logo.png": "/static/media/JNTU_Hyderabad_logo.1ca5764866a6686119c6.png",
+    "static/media/signature-1.gif": "/static/media/signature-1.60ffa7ea5b2c5a527c94.gif",
+    "static/media/Arizona_State_University_seal.png": "/static/media/Arizona_State_University_seal.4add64349eb2bd1bec2b.png",
+    "static/media/contactMailDark.svg": "/static/media/contactMailDark.1db650d351729a0f17b4e3104e6a7b7a.svg",
+    "static/media/developerActivity.svg": "/static/media/developerActivity.2c0445cae86f4243433a2f5a22b2c031.svg",
+    "static/media/actyv_logo.png": "/static/media/actyv_logo.1b25bbc173d0348c8865.png",
+    "static/media/Meta-logo.png": "/static/media/Meta-logo.2b75c3595b88f5fe4ccd.png",
+    "static/media/skill.svg": "/static/media/skill.35a147662ab0a1d15e579690446e0258.svg",
+    "index.html": "/index.html",
+    "static/media/talksCardBack.svg": "/static/media/talksCardBack.73ed1545d58273ba64b0.svg",
+    "main.dd4366ed.css.map": "/static/css/main.dd4366ed.css.map",
+    "main.87e73f86.js.map": "/static/js/main.87e73f86.js.map",
+    "64.bba8fa55.chunk.css.map": "/static/css/64.bba8fa55.chunk.css.map",
+    "64.34a561c0.chunk.js.map": "/static/js/64.34a561c0.chunk.js.map",
+    "769.b3cbb36b.chunk.css.map": "/static/css/769.b3cbb36b.chunk.css.map",
+    "769.e5673db3.chunk.js.map": "/static/js/769.e5673db3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd4366ed.css",
+    "static/js/main.87e73f86.js"
+  ]
+}
