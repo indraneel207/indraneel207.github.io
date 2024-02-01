@@ -287,7 +287,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/signature-1.gif"),
+      image: require("./assets/images/digital-sign.gif"),
       projectName: "Seamless E-Signature Integration System",
       projectDesc:
         "Turned the whole process into a 100% paperless party! 🎉 Added a slick feature for sequential user e-signatures on all kinds of docs—PDFs, Microsoft Docs, you name it! Reached a whopping 1.5K digital autographs!",

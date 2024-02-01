@@ -180,3 +180,13 @@
     font-size: 12px;
   }
 }
+
+// To handle the logo size on mobile
+@media (max-width: 768px) and (min-width: 320px) {
+  .header .logo-name {
+    font-size: 1.35rem;
+  }
+  .header .grey-color {
+    font-size: 1.35rem;
+  }
+}
