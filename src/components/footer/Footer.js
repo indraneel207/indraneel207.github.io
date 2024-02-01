@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="footer-div">
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
           {emoji("Revamped with ❤️ by Indraneel, ")}
-          inspired by {" "}
+          inspired by{" "}
           <a href="https://github.com/saadpasta/developerFolio">
             developerFolio
           </a>

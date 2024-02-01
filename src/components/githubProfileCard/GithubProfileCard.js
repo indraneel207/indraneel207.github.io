@@ -20,7 +20,11 @@ export default function GithubProfileCard({prof}) {
             <div className="blog-header">
               <p className="subTitle blog-subtitle">{contactInfo.subtitle}</p>
             </div>
-            <h2 className="bio-text">{emoji("सा विद्या या विमुक्तये। - Knowledge is that which liberates🌞")}</h2>
+            <h2 className="bio-text">
+              {emoji(
+                "सा विद्या या विमुक्तये। - Knowledge is that which liberates🌞"
+              )}
+            </h2>
             {prof.location !== null && (
               <div className="location-div">
                 <span className="desc-prof">

@@ -33,7 +33,11 @@ export default function Skills() {
               className={isDark ? "dark-mode skills-heading" : "skills-heading"}
             >
               {skillsSection.title}{" "}
-              <img width="50" src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/high-voltage.gif" alt='skills emoji'/>
+              <img
+                width="50"
+                src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/high-voltage.gif"
+                alt="skills emoji"
+              />
             </h1>
             <p
               className={

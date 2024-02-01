@@ -369,7 +369,7 @@ const achievementSection = {
           url: "https://www.coursera.org/account/accomplishments/certificate/E9H8JC7THTCP"
         }
       ]
-    },
+    }
   ],
   display: true // Set false to hide this section, defaults to true
 };

@@ -13,7 +13,7 @@ export default function Education() {
             width="50"
             src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/compass.gif"
             alt="education emoji"
-            style={{ marginLeft: "10px" }}
+            style={{marginLeft: "10px"}}
           />
         </h1>
         <div className="education-card-container">

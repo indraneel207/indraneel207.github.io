@@ -19,7 +19,7 @@ export default function WorkExperience() {
                   width="50"
                   src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/seedling.gif"
                   alt="Experiences emoji"
-                  style={{ marginLeft: "1rem" }}
+                  style={{marginLeft: "1rem"}}
                 />
               </h1>
 

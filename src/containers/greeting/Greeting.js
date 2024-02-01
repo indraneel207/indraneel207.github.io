@@ -26,7 +26,11 @@ export default function Greeting() {
               >
                 {" "}
                 {greeting.title}{" "}
-                <img width="50" src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/man-technologist.gif" alt='hello emoji'/>
+                <img
+                  width="50"
+                  src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/man-technologist.gif"
+                  alt="hello emoji"
+                />
               </h1>
               <p
                 className={
