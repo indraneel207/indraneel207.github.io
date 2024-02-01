@@ -22,6 +22,12 @@ export default function Achievement() {
               }
             >
               {achievementSection.title}
+              <img
+                width="50"
+                src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/crown.gif"
+                alt="crown emoji"
+                style={{marginLeft: "10px"}}
+              />
             </h1>
             <p
               className={

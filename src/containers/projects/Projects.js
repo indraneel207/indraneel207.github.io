@@ -46,7 +46,15 @@ export default function Projects() {
     return (
       <Suspense fallback={renderLoader()}>
         <div className="main" id="opensource">
-          <h1 className="project-title">Open Source Projects</h1>
+          <h1 className="project-title">
+            Open Source Projects
+            <img
+              width="50"
+              src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/clinking-glasses.gif"
+              alt="education emoji"
+              style={{marginLeft: "10px"}}
+            />
+          </h1>
           <div className="repo-cards-div-main">
             {repo.map((v, i) => {
               if (!v) {

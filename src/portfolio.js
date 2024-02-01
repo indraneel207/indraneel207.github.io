@@ -3,7 +3,7 @@
 // To change portfolio colors globally go to the  _globalColor.scss file
 
 import emoji from "react-easy-emoji";
-import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
+import splashAnimation from "./assets/lottie/Welcome_logo.json"; // Rename to your file name for custom animation
 
 // Splash Screen
 
@@ -50,11 +50,21 @@ const skillsSection = {
   subTitle: "Crafting Awesome Tech Experiences!",
   skills: [
     emoji("🎨 Crafting dazzling user interfaces and seamless experiences."),
-    emoji("🚀 Ensuring peak performance on the back-end and orchestrating cloud magic."),
-    emoji("🔍 Navigating data realms and turning information into actionable insights."),
-    emoji("🧙‍♂️ Delving into Applied ML and Data Science to create intelligent solutions."),
-    emoji("🎉 Leading projects with expertise in Web Services, APIs, Agile, and Scrum."),
-    emoji("🏰 Securing the kingdom through design patterns and meticulous documentation."),
+    emoji(
+      "🚀 Ensuring peak performance on the back-end and orchestrating cloud magic."
+    ),
+    emoji(
+      "🔍 Navigating data realms and turning information into actionable insights."
+    ),
+    emoji(
+      "🧙‍♂️ Delving into Applied ML and Data Science to create intelligent solutions."
+    ),
+    emoji(
+      "🎉 Leading projects with expertise in Web Services, APIs, Agile, and Scrum."
+    ),
+    emoji(
+      "🏰 Securing the kingdom through design patterns and meticulous documentation."
+    )
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
@@ -153,12 +163,13 @@ const educationInfo = {
         "Kept the grades game strong, pulling off multiple A+ scores and an awesome CGPA of 3.9.",
         "Did the TA gig for courses CSE 110 and CSE 205, rolling with Prof. Ryan Meuth.",
         "Juggled being a lively member of both the Google Developers Club and the IEEE Club at ASU."
-      ]      
+      ]
     },
     {
       schoolName: "Jawaharlal Nehru Technological University, Hyderabad, India",
       logo: require("./assets/images/JNTU_Hyderabad_logo.png"),
-      subHeader: "Bachelor of Technology in Computer Science & Engineering(B.Tech CSE)",
+      subHeader:
+        "Bachelor of Technology in Computer Science & Engineering(B.Tech CSE)",
       duration: "August 2016 - September 2020",
       desc: "Graduated in the top 10% of the pack from the prestigious CMR College of Engineering & Technology (CMRCET).",
       descBullets: [
@@ -202,7 +213,7 @@ const workExperiences = {
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Apr 2022 – Jul 2022",
-      desc:'(Software Ninja & Team Leader)',
+      desc: "(Software Ninja & Team Leader)",
       descBullets: [
         "Led a crew of 6 rockstars to build kick-ass full stack web apps from scratch.",
         "Architected 70% of a new project's backend, making it faster, stronger, and more secure than ever.",
@@ -214,7 +225,7 @@ const workExperiences = {
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Jun 2021 – Mar 2022",
-      desc:"(Code Wizard & SaaS Sorcerer)",
+      desc: "(Code Wizard & SaaS Sorcerer)",
       descBullets: [
         "Magically transformed the 'Onboarding & Admin Portal' into SaaS goodness loved by 10 top FMCG companies.",
         "Made user onboarding a breeze by throwing in document parsers, KYC services, 3rd party bank APIs, and a custom e-sign service. Result? 100% virtual and paper-free onboarding, saving around $100,000.",
@@ -258,29 +269,39 @@ const openSource = {
 // Some big projects you have worked on
 
 const bigProjects = {
-  title: "Big Projects",
-  subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH",
+  title: "Big Tech Adventures!",
+  subtitle:
+    "I've been the secret sauce behind some awesome startups and companies, crafting their tech dreams into reality!",
   projects: [
     {
-      image: require("./assets/images/saayaHealthLogo.webp"),
-      projectName: "Saayahealth",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/onboarding_portal.png"),
+      projectName: "Streamlined User Onboarding Solution",
+      projectDesc:
+        "Whipped up a super cool MERN-based user onboarding web app! Made admin reviews a breeze and user interaction as smooth as butter. ",
       footerLink: [
         {
           name: "Visit Website",
-          url: "http://saayahealth.com/"
+          url: "https://britannia-onboarding.prod.actyv.com/"
         }
         //  you can add extra buttons here.
       ]
     },
     {
-      image: require("./assets/images/nextuLogo.webp"),
-      projectName: "Nextu",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/signature-1.gif"),
+      projectName: "Seamless E-Signature Integration System",
+      projectDesc:
+        "Turned the whole process into a 100% paperless party! 🎉 Added a slick feature for sequential user e-signatures on all kinds of docs—PDFs, Microsoft Docs, you name it! Reached a whopping 1.5K digital autographs!",
+      footerLink: []
+    },
+    {
+      image: require("./assets/images/Shrivatsava_labs.png"),
+      projectName: "Shrivastava Lab",
+      projectDesc:
+        "Cooked up a snazzy website for my professor's lab at ASU! Written in NextJS and sizzling hot on AWS. All the magic? Yep, that's all me! ",
       footerLink: [
         {
           name: "Visit Website",
-          url: "http://nextu.se/"
+          url: "https://shrivastavalab.com/"
         }
       ]
     }
@@ -292,59 +313,63 @@ const bigProjects = {
 // Include certificates, talks etc
 
 const achievementSection = {
-  title: emoji("Achievements And Certifications 🏆 "),
+  title: emoji("Achievements & Certifications"),
   subtitle:
-    "Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
+    "Awesome achievements, certifications, award letters, and some cool stuff that I've nailed! ",
 
   achievementsCards: [
     {
-      title: "Google Code-In Finalist",
+      title: "Meta Front-End Developer Professional Certificate",
       subtitle:
-        "First Pakistani to be selected as Google Code-in Finalist from 4000 students from 77 different countries.",
-      image: require("./assets/images/codeInLogo.webp"),
-      imageAlt: "Google Code-In Logo",
+        "Mastered building responsive websites with HTML, CSS, and JavaScript, delved into React, aced Bootstrap, and even prepped for coding interviews!",
+      image: require("./assets/images/Meta-logo.png"),
+      imageAlt: "Meta Front-End Developer",
       footerLink: [
         {
-          name: "Certification",
-          url: "https://drive.google.com/file/d/0B7kazrtMwm5dYkVvNjdNWjNybWJrbndFSHpNY2NFV1p4YmU0/view?usp=sharing"
-        },
-        {
-          name: "Award Letter",
-          url: "https://drive.google.com/file/d/0B7kazrtMwm5dekxBTW5hQkg2WXUyR3QzQmR0VERiLXlGRVdF/view?usp=sharing"
-        },
-        {
-          name: "Google Code-in Blog",
-          url: "https://opensource.googleblog.com/2019/01/google-code-in-2018-winners.html"
+          name: "View Certificate",
+          url: "https://www.coursera.org/account/accomplishments/specialization/certificate/UZQQY25RFTPM"
         }
       ]
     },
     {
-      title: "Google Assistant Action",
+      title: "IBM Data Science Professional Certificate",
       subtitle:
-        "Developed a Google Assistant Action JavaScript Guru that is available on 2 Billion devices world wide.",
-      image: require("./assets/images/googleAssistantLogo.webp"),
-      imageAlt: "Google Assistant Action Logo",
+        "Dived into the data science realm, mastering Python, SQL, and crafting real-world projects to showcase my wizardry to employers.",
+      image: require("./assets/images/IBM_logo.jpg"),
+      imageAlt: "IBM Data Science",
       footerLink: [
         {
-          name: "View Google Assistant Action",
-          url: "https://assistant.google.com/services/a/uid/000000100ee688ee?hl=en"
+          name: "View Certificate",
+          url: "https://www.coursera.org/account/accomplishments/specialization/certificate/MNDDL5TGPXWU"
         }
       ]
     },
-
     {
-      title: "PWA Web App Developer",
-      subtitle: "Completed Certifcation from SMIT for PWA Web App Development",
-      image: require("./assets/images/pwaLogo.webp"),
-      imageAlt: "PWA Logo",
+      title: "Foundational C# with Microsoft Certification",
+      subtitle:
+        "Mastered C# like a coding ninja – from dynamic web apps to Unity games, I'm armed with skills and a badass certification to prove it!",
+      image: require("./assets/images/Microsoft_log.png"),
+      imageAlt: "Microsoft Certification",
       footerLink: [
-        {name: "Certification", url: ""},
         {
-          name: "Final Project",
-          url: "https://pakistan-olx-1.firebaseapp.com/"
+          name: "View Certificate",
+          url: "https://www.freecodecamp.org/certification/indraneel_vairagare/foundational-c-sharp-with-microsoft"
         }
       ]
-    }
+    },
+    {
+      title: "AWS Fundamentals: Going Cloud-Native",
+      subtitle:
+        "Mastering AWS essentials and unleashing the power of cloud magic for IT professionals!",
+      image: require("./assets/images/aws_logo.png"),
+      imageAlt: "AWS Fundamentals",
+      footerLink: [
+        {
+          name: "View Certificate",
+          url: "https://www.coursera.org/account/accomplishments/certificate/E9H8JC7THTCP"
+        }
+      ]
+    },
   ],
   display: true // Set false to hide this section, defaults to true
 };
@@ -399,9 +424,7 @@ const podcastSection = {
   subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
 
   // Please Provide with Your Podcast embeded Link
-  podcast: [
-    ""
-  ],
+  podcast: [""],
   display: false // Set false to hide this section, defaults to true
 };
 
@@ -409,7 +432,7 @@ const contactInfo = {
   title: emoji("Contact Me ☎️"),
   subtitle:
     "Discuss a project or just want to say hi? My Inbox is open for all.",
-  number: "",
+  number: "Not so fast, I'm not sharing my number here 😜",
   email_address: "indraneel207@gmail.com"
 };
 

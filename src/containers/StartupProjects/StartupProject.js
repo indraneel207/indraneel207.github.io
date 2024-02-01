@@ -21,7 +21,12 @@ export default function StartupProject() {
     <Fade bottom duration={1000} distance="20px">
       <div className="main" id="projects">
         <div>
-          <h1 className="skills-heading">{bigProjects.title}</h1>
+          <h1 className="skills-heading">{bigProjects.title} <img
+              width="50"
+              src="https://raw.githubusercontent.com/heydrdev/devtools/main/emojis/telegram/gem-stone.gif"
+              alt="education emoji"
+              style={{marginLeft: "10px"}}
+            /></h1>
           <p
             className={
               isDark
