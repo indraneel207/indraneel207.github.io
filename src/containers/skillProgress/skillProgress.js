@@ -30,7 +30,7 @@ export default function StackProgress() {
             </h1>
             <codersrank-skills-chart
               username="indraneel207"
-              labels = {window.innerWidth < 768 ? false : true}
+              labels={window.innerWidth < 768 ? false : true}
               legend
               tooltip
               sort-by-score
