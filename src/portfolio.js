@@ -26,7 +26,7 @@ const greeting = {
     "I'm a CS grad at ASU 🔱 and proudly rock the Sun Devil vibe. Tech enthusiast, coding ninja, and full-stack developer with over 3 years of professional mischief. I geek out on AI & ML, love solving problems, and believe in the magic of code. Let's build something awesome together!"
   ),
   resumeLink:
-    "https://drive.google.com/file/d/1ofFdKF_mqscH8WvXkSObnVvC9kK7Ldlu/view?usp=sharing", // Set to empty to hide the button
+    "https://drive.google.com/file/d/18JEXlAwSqj4NZl1SKqxg9J8_88uSowQ-/view?usp=sharing", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
