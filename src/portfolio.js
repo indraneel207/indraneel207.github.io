@@ -23,10 +23,10 @@ const greeting = {
   username: "Indraneel Vairagare",
   title: "Hey, I'm Indraneel",
   subTitle: emoji(
-    "I'm a CS grad at ASU 🔱 and proudly rock the Sun Devil vibe. Tech enthusiast, coding ninja, and full-stack developer with over 3 years of professional mischief. I geek out on AI & ML, love solving problems, and believe in the magic of code. Let's build something awesome together!"
+    "I'm a CS graduate from ASU 🔱 and proudly rock the Sun Devil vibe. Tech enthusiast, coding ninja, and full-stack developer with over 5 years of professional mischief. I geek out on AI & ML, love solving problems, and believe in the magic of code. Let's build something awesome together!"
   ),
   resumeLink:
-    "https://drive.google.com/file/d/18JEXlAwSqj4NZl1SKqxg9J8_88uSowQ-/view?usp=sharing", // Set to empty to hide the button
+    "https://drive.google.com/file/d/1ZlKcvBtlRJns4-DQW23A-u9UUzI_OImy/view?usp=sharing", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
@@ -160,14 +160,14 @@ const educationInfo = {
       desc: "Pursued an advanced CS degree, diving into a mix of cool projects exploring cutting-edge tech and solving problems in creative ways.",
       descBullets: [
         "Rocked courses like Artificial Intelligence, Data Mining, Cloud Computing, and a bunch more.",
-        "Kept the grades game strong, pulling off multiple A+ scores and an awesome CGPA of 3.9.",
+        "Kept the grades game strong, pulling off multiple A+ scores and an awesome CGPA of 3.93.",
         "Did the TA gig for courses CSE 110 and CSE 205, rolling with Prof. Ryan Meuth.",
         "Juggled being a lively member of both the Google Developers Club and the IEEE Club at ASU."
       ]
     },
     {
       schoolName: "Jawaharlal Nehru Technological University, Hyderabad, India",
-      logo: require("./assets/images/JNTU_Hyderabad_logo.png"),
+      logo: require("./assets/images/JNTU_Hyderabad_logo.jpg"),
       subHeader:
         "Bachelor of Technology in Computer Science & Engineering(B.Tech CSE)",
       duration: "August 2016 - September 2020",
@@ -209,7 +209,7 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "SDE2 / Team Lead",
+      role: "SDE 2 / Team Lead",
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Apr 2022 – Jul 2022",
@@ -221,7 +221,7 @@ const workExperiences = {
       ]
     },
     {
-      role: "SDE1",
+      role: "SDE 1",
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Jun 2021 – Mar 2022",
