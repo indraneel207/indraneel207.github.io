@@ -1,7 +1,7 @@
 {
+  "name": "Indraneel's Portfolio",
+  "version": "1.0.0",
   "homepage": "https://indraneel207.github.io/",
-  "name": "Portfolio",
-  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@codersrank/skills-chart": "^0.9.21",
