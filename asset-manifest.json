@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.a4a24d2e.css",
-    "main.js": "/static/js/main.e7e13d74.js",
+    "main.js": "/static/js/main.558710f1.js",
     "static/css/64.bba8fa55.chunk.css": "/static/css/64.bba8fa55.chunk.css",
-    "static/js/64.34a561c0.chunk.js": "/static/js/64.34a561c0.chunk.js",
+    "static/js/64.7eb3b2ba.chunk.js": "/static/js/64.7eb3b2ba.chunk.js",
     "static/css/769.b3cbb36b.chunk.css": "/static/css/769.b3cbb36b.chunk.css",
-    "static/js/769.e5673db3.chunk.js": "/static/js/769.e5673db3.chunk.js",
+    "static/js/769.bbe8b766.chunk.js": "/static/js/769.bbe8b766.chunk.js",
     "static/media/onboarding_portal.png": "/static/media/onboarding_portal.b3f3eee6c00305b5da1f.png",
     "static/media/Shrivatsava_labs.png": "/static/media/Shrivatsava_labs.42f6c5521ccf87ed9b67.png",
     "static/media/WindSong-Regular.ttf": "/static/media/WindSong-Regular.834aeccec6ff5dcbedc3.ttf",
@@ -25,14 +25,14 @@
     "index.html": "/index.html",
     "static/media/talksCardBack.svg": "/static/media/talksCardBack.73ed1545d58273ba64b0.svg",
     "main.a4a24d2e.css.map": "/static/css/main.a4a24d2e.css.map",
-    "main.e7e13d74.js.map": "/static/js/main.e7e13d74.js.map",
+    "main.558710f1.js.map": "/static/js/main.558710f1.js.map",
     "64.bba8fa55.chunk.css.map": "/static/css/64.bba8fa55.chunk.css.map",
-    "64.34a561c0.chunk.js.map": "/static/js/64.34a561c0.chunk.js.map",
+    "64.7eb3b2ba.chunk.js.map": "/static/js/64.7eb3b2ba.chunk.js.map",
     "769.b3cbb36b.chunk.css.map": "/static/css/769.b3cbb36b.chunk.css.map",
-    "769.e5673db3.chunk.js.map": "/static/js/769.e5673db3.chunk.js.map"
+    "769.bbe8b766.chunk.js.map": "/static/js/769.bbe8b766.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a4a24d2e.css",
-    "static/js/main.e7e13d74.js"
+    "static/js/main.558710f1.js"
   ]
 }
