@@ -1,10 +1,9 @@
 name: Build and Deploy
 env:
-  CI: false
   GITHUB_USERNAME: ${{ github.repository_owner }}
-  REACT_APP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This is automatically set by Github Actions
+  REACT_APP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   USE_GITHUB_DATA: "true"
-  MEDIUM_USERNAME: "indraneel207" # Change this to your medium username
+  MEDIUM_USERNAME: "indraneel207"
 permissions:
   contents: write
 on:
@@ -13,31 +12,35 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 12 * * 1" # see https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events
+    - cron: "0 12 * * 1"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3 # If you're using actions/checkout@v3 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v4
 
       - name: Setup Node.js 🔧
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20
 
-      - name: Update npm 🚀
-        run: npm install -g npm@latest
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Install and Build 🔧 # Build the Project
+      - name: Install and Build 🔧
         run: |
-          npm install
+          npm ci
           npm run build
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }} # This is provided by GitHub.
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build # The folder the action should deploy.
+          branch: gh-pages
+          folder: build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
