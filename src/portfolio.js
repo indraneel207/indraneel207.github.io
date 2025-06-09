@@ -23,7 +23,7 @@ const greeting = {
   username: "Indraneel Vairagare",
   title: "Hey, I'm Indraneel",
   subTitle: emoji(
-    "I'm a CS graduate from ASU 🔱 and proudly rock the Sun Devil vibe. Tech enthusiast, coding ninja, and full-stack developer with over 5 years of professional mischief. I geek out on AI & ML, love solving problems, and believe in the magic of code. Let's build something awesome together!"
+    "I’m a CS grad from ASU 🔱 turned Vanguard code wrangler—rocking React, AWS state machines, and data-visibility magic. Full-stack tinkerer with 5+ years of pro mischief, obsessed with AI/ML hacks and clean UX vibes. Always down to squash bugs, spin up slick dashboards, and building epic stuff together!"
   ),
   resumeLink:
     "https://drive.google.com/file/d/1ZlKcvBtlRJns4-DQW23A-u9UUzI_OImy/view?usp=sharing", // Set to empty to hide the button
@@ -92,6 +92,10 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fab fa-react"
     },
     {
+      skillName: "aws",
+      fontAwesomeClassname: "fab fa-aws"
+    },
+    {
       skillName: "VueJS",
       fontAwesomeClassname: "fab fa-vuejs"
     },
@@ -122,10 +126,6 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: "OpenCV",
       fontAwesomeClassname: "fas fa-film"
-    },
-    {
-      skillName: "aws",
-      fontAwesomeClassname: "fab fa-aws"
     },
     {
       skillName: "firebase",
@@ -185,7 +185,7 @@ const educationInfo = {
 // Your top 3 proficient stacks/tech experience
 
 const techStack = {
-  viewSkillBars: true, //Set it to true to show Proficiency Section
+  viewSkillBars: false, //Set it to true to show Proficiency Section
   experience: [
     {
       Stack: "Frontend/Design", //Insert stack or technology you have experience in
@@ -209,11 +209,23 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
+      role: "Software Engineer",
+      company: "Vanguard",
+      companylogo: require("./assets/images/vanguard_logo.png"),
+      date: "Oct 2024 – Present",
+      desc: "Malvern, PA",
+      descBullets: [
+        "Built a React Datahub dashboard with REST hooks, React-Query cache & live search—giving teams 100% data visibility.",
+        "Wired up AWS state machines (Step Functions, Glue ETL, S3) via CloudFormation—cutting ~10 hrs of manual pipeline work weekly.",
+        "Paired with UX & data squads to ship role-based UI components (Jest + RTL tested), boosting release speed ~25%."
+      ]
+    },
+    {
       role: "SDE 2 / Team Lead",
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Apr 2022 – Jul 2022",
-      desc: "(Software Ninja & Team Leader)",
+      desc: "Bangalore, India",
       descBullets: [
         "Led a crew of 6 rockstars to build kick-ass full stack web apps from scratch.",
         "Architected 70% of a new project's backend, making it faster, stronger, and more secure than ever.",
@@ -225,7 +237,7 @@ const workExperiences = {
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Jun 2021 – Mar 2022",
-      desc: "(Code Wizard & SaaS Sorcerer)",
+      desc: "Bangalore, India",
       descBullets: [
         "Magically transformed the 'Onboarding & Admin Portal' into SaaS goodness loved by 10 top FMCG companies.",
         "Made user onboarding a breeze by throwing in document parsers, KYC services, 3rd party bank APIs, and a custom e-sign service. Result? 100% virtual and paper-free onboarding, saving around $100,000.",
@@ -237,7 +249,7 @@ const workExperiences = {
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Jul 2020 – May 2021",
-      desc: "(Coding Sorcerer's Apprentice)",
+      desc: "Bangalore, India",
       descBullets: [
         "Solved the 'Delegation of user requests' puzzle, seamlessly integrating it into 2 MERN-based web apps that became the company's pride and joy.",
         "Teamed up to create actyv Score, a DS application predicting creditworthiness with an 80% accuracy charm.",
@@ -249,10 +261,22 @@ const workExperiences = {
       company: "actyv.ai",
       companylogo: require("./assets/images/actyv_logo.png"),
       date: "Oct 2019 – Jun 2020",
-      desc: "(Code Sorcerer in Training)",
+      desc: "Bangalore, India",
       descBullets: [
         "Collaborated on building full-stack web apps & multilingual Android magic for the Neo-Banking sectors.",
         "Dove into Coding standards, Design patterns, and Testing methods, contributing to the magical arts of software engineering on projects like ‘Jandhan’, ‘Actyv Pro’, etc."
+      ]
+    },
+    {
+      role: 'Developer Trainee',
+      company: 'Xebia',
+      companylogo: require("./assets/images/xebia_logo.png"),
+      date: "Jul 2019 – Sep 2019",
+      desc: "Hyderabad, India",
+      descBullets: [
+        "Dialed in Java Spring, HTML, CSS & JS to spin up 5+ mini-projects with the team.",
+        "Doubled client-server throughput by wiring up Spring MVC REST APIs & Thymeleaf in a scalable web app.",
+        "Hooked up JPA/Hibernate/Spring Data with PostgreSQL—slashing query times by 40% and boosting data efficiency 30%."
       ]
     }
   ]
