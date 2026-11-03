@@ -185,6 +185,7 @@ for (const theme of ["light", "dark"] as const) {
       await page.goto(route);
       const result = await new AxeBuilder({page})
         .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+        .options({rules: {"label-content-name-mismatch": {enabled: true}}})
         .analyze();
       expect(result.violations, route).toEqual([]);
     }
@@ -220,10 +221,19 @@ test("research and AI project cards lead to their case studies and source resour
   page
 }) => {
   await page.goto("/");
-  await page
-    .locator("#work")
-    .getByRole("link", {name: "Explore RABiTPy", exact: true})
-    .click();
+  const researchCard = page.locator("#work .project-card").filter({
+    has: page.getByRole("link", {name: "Explore RABiTPy", exact: true})
+  });
+  await expect(researchCard.getByRole("link")).toHaveCount(1);
+  await researchCard.locator(".project-card-preview").scrollIntoViewIfNeeded();
+  const preview = await researchCard
+    .locator(".project-card-preview")
+    .boundingBox();
+  expect(preview).not.toBeNull();
+  await page.mouse.click(
+    preview!.x + preview!.width / 2,
+    preview!.y + preview!.height / 2
+  );
   await expect(page).toHaveURL(/\/work\/rabitpy\/$/);
   const resources = page.getByRole("navigation", {name: "Project resources"});
   await expect(

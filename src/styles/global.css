@@ -1050,6 +1050,7 @@ html:not(.js) .annotation-buttons {
   margin-top: 38px;
 }
 .project-card {
+  position: relative;
   min-width: 0;
 }
 .supporting-projects {
@@ -1186,13 +1187,13 @@ html:not(.js) .annotation-buttons {
   border-top: 1px solid #d9c0ac;
   font-size: 6px;
 }
-.project-image-link:hover .research-sheet,
-.project-image-link:focus-visible .research-sheet,
-.project-image-link:hover .insuregpt-sheet,
-.project-image-link:focus-visible .insuregpt-sheet {
+.project-card:hover .research-sheet,
+.project-card:focus-within .research-sheet,
+.project-card:hover .insuregpt-sheet,
+.project-card:focus-within .insuregpt-sheet {
   transform: rotate(0) translateY(-4px);
 }
-.project-image-link {
+.project-card-preview {
   display: block;
   border-radius: 4px;
 }
@@ -1227,8 +1228,8 @@ html:not(.js) .annotation-buttons {
 .stage-lab .screenshot-window {
   transform: rotate(2deg);
 }
-.project-image-link:hover .screenshot-window,
-.project-image-link:focus-visible .screenshot-window {
+.project-card:hover .screenshot-window,
+.project-card:focus-within .screenshot-window {
   transform: rotate(0) translateY(-4px);
 }
 .screenshot-bar {
@@ -1271,6 +1272,20 @@ html:not(.js) .annotation-buttons {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+.project-card h3 > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 4px;
+}
+.project-card h3 > a:focus-visible {
+  outline: none;
+}
+.project-card h3 > a:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
 }
 .project-open-icon {
   display: flex;

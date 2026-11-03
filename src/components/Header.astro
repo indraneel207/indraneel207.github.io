@@ -14,8 +14,8 @@ const links = [
 </a>
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="/" aria-label="Indraneel Vairagare, home">
-      <span class="brand-mark">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">
         iv<span>.</span>
       </span>
       <span class="brand-name">
@@ -23,6 +23,7 @@ const links = [
         <br />
         Vairagare
       </span>
+      <span class="sr-only">, home</span>
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
       {links.map(link => (

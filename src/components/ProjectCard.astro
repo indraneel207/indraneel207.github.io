@@ -10,14 +10,9 @@ const {project} = Astro.props;
 ---
 
 <article class="project-card">
-  <a
-    class="project-image-link"
-    href={`/work/${project.id}/`}
-    data-project={project.id}
-    aria-label={`Explore ${project.data.shortTitle}`}
-  >
+  <div class="project-card-preview">
     <ProjectVisual visual={project.data.visual} />
-  </a>
+  </div>
   <div class="project-card-meta mono">
     <span>
       {String(project.data.order).padStart(2, "0")} /{" "}
@@ -27,6 +22,7 @@ const {project} = Astro.props;
   </div>
   <h3>
     <a href={`/work/${project.id}/`} data-project={project.id}>
+      <span class="sr-only">Explore </span>
       {project.data.shortTitle}
       <span class="project-open-icon">
         <Icon name="diagonal" size={25} />

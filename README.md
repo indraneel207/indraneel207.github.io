@@ -86,6 +86,8 @@ CI=true npm run test:browser
 
 The browser suite checks responsive overflow from 320px to 1440px, search and keyboard-operated tabs, mobile navigation, persistent themes, unavailable local storage, no-JavaScript navigation, and automated WCAG AA checks in both themes. Automated checks supplement manual accessibility review.
 
+The accessibility checks also explicitly enable Lighthouse's label-in-name rule. For Lighthouse comparisons, use a clean Chrome profile with extensions disabled and consistent device/throttling settings. Findings and corrections from the supplied production report are recorded in [docs/lighthouse-review.md](docs/lighthouse-review.md).
+
 ## Deploy
 
 The existing GitHub Pages workflow remains the publishing path:
