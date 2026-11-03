@@ -1,0 +1,15 @@
+---
+interface Props {
+  items: {value: string; label: string}[];
+}
+const {items} = Astro.props;
+---
+
+<dl class="impact-strip" aria-label="Vanguard engineering impact">
+  {items.map(item => (
+    <div>
+      <dt>{item.label}</dt>
+      <dd>{item.value}</dd>
+    </div>
+  ))}
+</dl>

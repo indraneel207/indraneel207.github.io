@@ -1,0 +1,141 @@
+---
+import {getCollection, render} from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import ImpactMetrics from "../../components/ImpactMetrics.astro";
+import ProjectVisual from "../../components/ProjectVisual.astro";
+import ProjectExplorer from "../../components/ProjectExplorer";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("work")).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return projects.map((project, index) => ({
+    params: {id: project.id},
+    props: {project, next: projects[(index + 1) % projects.length]}
+  }));
+}
+
+const {project, next} = Astro.props;
+const {Content, headings} = await render(project);
+const {data} = project;
+const resources = [
+  ...(Array.isArray(data.resources) ? data.resources : []),
+  ...(data.liveUrl ? [{label: "Visit the website", url: data.liveUrl}] : [])
+];
+const captions = {
+  datahub:
+    "Illustrative capability map. Connections are simplified; no internal systems or data are reproduced.",
+  onboarding:
+    "An existing screenshot of the delivered project, preserved from the original portfolio.",
+  lab: "An existing screenshot of the delivered project, preserved from the original portfolio.",
+  research:
+    "Conceptual tracking illustration. The trajectories are illustrative and do not represent experimental data.",
+  insuregpt: "Schematic of the prototype's request-to-prediction flow."
+};
+---
+
+<Base
+  title={`${data.shortTitle} — Indraneel Vairagare`}
+  description={data.summary}
+>
+  <article>
+    <header class="case-hero shell">
+      <a class="case-back" href={data.featured ? "/#work" : "/#more-work"}>
+        ← BACK TO {data.featured ? "SELECTED WORK" : "MORE WORK"}
+      </a>
+      <p class="eyebrow">
+        0{data.order} / {data.client.toUpperCase()} /{" "}
+        {data.category.toUpperCase()}
+      </p>
+      <h1>{data.title}</h1>
+      <p class="case-summary">{data.summary}</p>
+      <dl class="case-facts">
+        <div>
+          <dt>My role</dt>
+          <dd>{data.role}</dd>
+        </div>
+        <div>
+          <dt>Context</dt>
+          <dd>{data.context}</dd>
+        </div>
+        <div>
+          <dt>Toolkit</dt>
+          <dd>{data.tags.join(" · ")}</dd>
+        </div>
+      </dl>
+    </header>
+    {data.impact && (
+      <div class="shell case-impact">
+        <ImpactMetrics items={data.impact} />
+      </div>
+    )}
+    <div class="shell">
+      <div class="case-media">
+        <ProjectVisual visual={data.visual} eager />
+      </div>
+      <p class="case-caption">{captions[data.visual]}</p>
+    </div>
+    <div class="case-body-layout shell">
+      <aside class="case-sidebar">
+        <p class="mono">IN THIS CASE STUDY</p>
+        <nav aria-label="Case study sections">
+          {headings
+            .filter(heading => heading.depth === 2)
+            .map(heading => (
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            ))}
+        </nav>
+        <ul class="project-tags" aria-label="Technologies">
+          {data.tags.map(tag => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+        {resources.length > 0 && (
+          <nav class="project-resource-links" aria-label="Project resources">
+            {resources.map(resource => (
+              <a
+                class="text-link"
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {resource.label}
+                <Icon name="diagonal" size={17} />
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            ))}
+          </nav>
+        )}
+      </aside>
+      <div>
+        <div class="prose">
+          <Content />
+        </div>
+        {data.visual === "datahub" && (
+          <div class="case-explorer">
+            <p class="eyebrow">EXPLORE AN ILLUSTRATIVE INTERFACE</p>
+            <ProjectExplorer client:visible />
+          </div>
+        )}
+      </div>
+    </div>
+    <div class="case-result shell">
+      <span class="mono">THE THREAD THAT MATTERS</span>
+      <p>{data.outcome}</p>
+    </div>
+    <a
+      class="next-project shell"
+      href={`/work/${next.id}/`}
+      data-project={next.id}
+    >
+      <div>
+        <p class="eyebrow">NEXT / {next.data.client.toUpperCase()}</p>
+        <h2>{next.data.shortTitle}</h2>
+      </div>
+      <span>
+        <Icon name="arrow" size={28} />
+      </span>
+    </a>
+  </article>
+</Base>

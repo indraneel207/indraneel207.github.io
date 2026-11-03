@@ -1,0 +1,41 @@
+---
+const stages = [
+  {number: "01", title: "Conversation", detail: "Custom GPT", icon: "↳"},
+  {number: "02", title: "Action", detail: "API request", icon: "↗"},
+  {number: "03", title: "Flask API", detail: "Model endpoint", icon: "{}"},
+  {number: "04", title: "Prediction", detail: "Regression model", icon: "ƒ"}
+];
+---
+
+<div class="project-illustration insuregpt-stage">
+  <div class="insuregpt-sheet">
+    <div class="insuregpt-header">
+      <strong>
+        InsureGPT<span>↗</span>
+      </strong>
+      <span class="mono">APPLIED AI / PROTOTYPE</span>
+    </div>
+    <ol
+      class="prediction-flow"
+      aria-label="Prototype request-to-prediction workflow"
+    >
+      {stages.map(stage => (
+        <li>
+          <span class="prediction-icon" aria-hidden="true">
+            {stage.icon}
+          </span>
+          <span class="mono">/{stage.number}</span>
+          <strong>{stage.title}</strong>
+          <small>{stage.detail}</small>
+        </li>
+      ))}
+    </ol>
+    <div class="insuregpt-footer mono">
+      <span>CONVERSATION → API → MODEL</span>
+      <span>PYTHON + FLASK</span>
+    </div>
+  </div>
+  <span class="image-figure mono">
+    SCHEMATIC WORKFLOW / GPT ACTIONS + PREDICTION API
+  </span>
+</div>

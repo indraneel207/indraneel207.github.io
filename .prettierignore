@@ -1,4 +1,10 @@
-src/serviceWorker.js
+node_modules
+build
+dist
+.astro
 package-lock.json
-src/assets/lottie
+src/assets
+playwright-report
+test-results
+LICENSE
 

@@ -1,0 +1,81 @@
+---
+import Icon from "./Icon.astro";
+import {profile, recommendations} from "../data/profile";
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC"
+});
+---
+
+<section
+  class="recommendations shell"
+  id="recommendations"
+  aria-labelledby="recommendations-title"
+>
+  <header class="recommendations-heading">
+    <p class="eyebrow">IN THEIR WORDS</p>
+    <h3 id="recommendations-title">
+      From the people <em>I’ve built with.</em>
+    </h3>
+    <p>Selected excerpts from LinkedIn recommendations, shared in 2022.</p>
+  </header>
+  <div class="recommendation-grid">
+    {recommendations.map((recommendation, index) => (
+      <article
+        class:list={[
+          "recommendation",
+          {"recommendation-featured": index === 0}
+        ]}
+      >
+        <figure>
+          <p class="recommendation-focus mono">{recommendation.focus}</p>
+          <blockquote cite={profile.linkedin}>
+            <p>“{recommendation.excerpt}”</p>
+          </blockquote>
+          <figcaption>
+            <a
+              class="recommendation-author"
+              href={recommendation.authorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>{recommendation.author}</strong>
+              <Icon name="diagonal" size={15} />
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+            <span>{recommendation.relationship}</span>
+            <time datetime={recommendation.date}>
+              {dateFormat.format(new Date(`${recommendation.date}T00:00:00Z`))}
+            </time>
+          </figcaption>
+        </figure>
+        <details class="recommendation-full">
+          <summary>
+            <span>
+              Read full recommendation
+              <span class="sr-only"> from {recommendation.author}</span>
+            </span>
+            <span class="recommendation-toggle" aria-hidden="true">
+              +
+            </span>
+          </summary>
+          <blockquote cite={profile.linkedin}>
+            <p>{recommendation.quote}</p>
+          </blockquote>
+          <a
+            class="text-link"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on LinkedIn <Icon name="diagonal" size={15} />
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </details>
+      </article>
+    ))}
+  </div>
+</section>

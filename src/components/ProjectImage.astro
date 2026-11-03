@@ -1,0 +1,46 @@
+---
+import {Image} from "astro:assets";
+import lab from "../assets/images/Shrivatsava_labs.png";
+import onboarding from "../assets/images/onboarding_portal.png";
+interface Props {
+  visual: "onboarding" | "lab";
+  eager?: boolean;
+}
+const {visual, eager = false} = Astro.props;
+const image = visual === "lab" ? lab : onboarding;
+const alt =
+  visual === "lab"
+    ? "Shrivastava Lab website with research navigation and a photograph of the ASU team"
+    : "The delivered actyv.ai onboarding entry screen for Britannia";
+---
+
+<div class:list={["project-image-stage", `stage-${visual}`]}>
+  <div class="screenshot-window">
+    <div class="screenshot-bar">
+      <span class="window-dots" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+      <span>
+        {visual === "lab" ? "shrivastavalab.com" : "onboarding / actyv.ai"}
+      </span>
+      <span aria-hidden="true">↗</span>
+    </div>
+    <Image
+      src={image}
+      alt={alt}
+      widths={[480, 800, 1200]}
+      sizes="(max-width: 700px) 90vw, 600px"
+      width={1200}
+      format="webp"
+      quality={80}
+      loading={eager ? "eager" : "lazy"}
+    />
+  </div>
+  <span class="image-figure mono">
+    {visual === "lab"
+      ? "PROJECT / A HOME FOR RESEARCH"
+      : "PROJECT / THE ONBOARDING EXPERIENCE"}
+  </span>
+</div>
