@@ -1,1 +1,106 @@
-{"data":{"user":{"name":"Indraneel Vairagare","bio":"MS CS '24 @ASU | Ex-SDE2 @actyv.ai | Software Developer | AI/ML Enthusiast","avatarUrl":"https://avatars.githubusercontent.com/u/53507022?u=f2a0ea9c1c5f4d58c2e336b791204e3751a3dada&v=4","location":"Paoli, PA","pinnedItems":{"totalCount":6,"edges":[{"node":null},{"node":null},{"node":null},{"node":null},{"node":null},{"node":null}]}}},"errors":[{"type":"FORBIDDEN","path":["user","pinnedItems","edges",0,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"},{"type":"FORBIDDEN","path":["user","pinnedItems","edges",1,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"},{"type":"FORBIDDEN","path":["user","pinnedItems","edges",2,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"},{"type":"FORBIDDEN","path":["user","pinnedItems","edges",3,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"},{"type":"FORBIDDEN","path":["user","pinnedItems","edges",4,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"},{"type":"FORBIDDEN","path":["user","pinnedItems","edges",5,"node","stargazers"],"extensions":{"saml_failure":false,"ip_allow_list_failure":false},"locations":[{"line":16,"column":15}],"message":"Resource not accessible by integration"}]}
+{
+  "data": {
+    "user": {
+      "id": "MDQ6VXNlcjUzNTA3MDIy",
+      "name": "Indraneel Vairagare",
+      "bio": "MS CS '24 @ASU | Ex-SDE2 @actyv.ai | Software Developer | AI/ML Enthusiast",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/53507022?u=f2a0ea9c1c5f4d58c2e336b791204e3751a3dada&v=4",
+      "location": "Paoli, PA",
+      "pinnedItems": {
+        "totalCount": 6,
+        "edges": [
+          {
+            "node": {
+              "id": "R_kgDOMFD2EQ",
+              "name": "RABiTPy",
+              "description": null,
+              "forkCount": 1,
+              "stargazerCount": 3,
+              "url": "https://github.com/indraneel207/RABiTPy",
+              "diskUsage": 168648,
+              "primaryLanguage": {
+                "name": "Jupyter Notebook",
+                "color": "#DA5B0B"
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "R_kgDONNDEAQ",
+              "name": "giphy_search",
+              "description": null,
+              "forkCount": 0,
+              "stargazerCount": 0,
+              "url": "https://github.com/indraneel207/giphy_search",
+              "diskUsage": 292,
+              "primaryLanguage": {
+                "name": "JavaScript",
+                "color": "#f1e05a"
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "R_kgDOKrOBZA",
+              "name": "Directional_Stock_Prediction_using_Viral_Tweets_News---front_end",
+              "description": "Directional Stock Prediction using Viral Tweets & News Project Front End",
+              "forkCount": 0,
+              "stargazerCount": 1,
+              "url": "https://github.com/indraneel207/Directional_Stock_Prediction_using_Viral_Tweets_News---front_end",
+              "diskUsage": 55,
+              "primaryLanguage": {
+                "name": "JavaScript",
+                "color": "#f1e05a"
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "R_kgDOGTXZwA",
+              "name": "crypto-market-notifier",
+              "description": null,
+              "forkCount": 0,
+              "stargazerCount": 1,
+              "url": "https://github.com/indraneel207/crypto-market-notifier",
+              "diskUsage": 354,
+              "primaryLanguage": {
+                "name": "JavaScript",
+                "color": "#f1e05a"
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "R_kgDOME9tDQ",
+              "name": "insurance_predictor_chatgpt_extension",
+              "description": null,
+              "forkCount": 0,
+              "stargazerCount": 0,
+              "url": "https://github.com/indraneel207/insurance_predictor_chatgpt_extension",
+              "diskUsage": 509,
+              "primaryLanguage": {
+                "name": "Jupyter Notebook",
+                "color": "#DA5B0B"
+              }
+            }
+          },
+          {
+            "node": {
+              "id": "R_kgDOKAmpoQ",
+              "name": "auth0-tutorial-be",
+              "description": null,
+              "forkCount": 0,
+              "stargazerCount": 0,
+              "url": "https://github.com/indraneel207/auth0-tutorial-be",
+              "diskUsage": 3,
+              "primaryLanguage": {
+                "name": "JavaScript",
+                "color": "#f1e05a"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
