@@ -13,7 +13,7 @@ const ERR = {
     "Github Username was found to be undefined. Please set all relevant environment variables.",
   requestFailed:
     "The request to GitHub didn't succeed. Check if GitHub token in your .env file is correct.",
-  requestFailedMedium:
+  requestMediumFailed:
     "The request to Medium didn't succeed. Check if Medium username in your .env file is correct."
 };
 if (USE_GITHUB_DATA === "true") {
@@ -96,6 +96,18 @@ if (USE_GITHUB_DATA === "true") {
 
 if (MEDIUM_USERNAME !== undefined) {
   console.log(`Fetching Medium blogs data for ${MEDIUM_USERNAME}`);
+  const writeMediumFallback = error => {
+    console.warn(`${ERR.requestMediumFailed} ${error}`);
+    fs.writeFile(
+      "./public/blogs.json",
+      JSON.stringify({items: []}),
+      writeError => {
+        if (writeError) {
+          console.warn(`Could not write fallback blog data: ${writeError}`);
+        }
+      }
+    );
+  };
   const options = {
     hostname: "api.rss2json.com",
     path: `/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`,
@@ -108,7 +120,9 @@ if (MEDIUM_USERNAME !== undefined) {
 
     console.log(`statusCode: ${res.statusCode}`);
     if (res.statusCode !== 200) {
-      throw new Error(ERR.requestMediumFailed);
+      writeMediumFallback(`HTTP ${res.statusCode}`);
+      res.resume();
+      return;
     }
 
     res.on("data", d => {
@@ -122,9 +136,7 @@ if (MEDIUM_USERNAME !== undefined) {
     });
   });
 
-  req.on("error", error => {
-    throw error;
-  });
+  req.on("error", writeMediumFallback);
 
   req.end();
 }
