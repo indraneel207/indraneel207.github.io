@@ -1,0 +1,22 @@
+---
+import DataVisual from "./DataVisual.astro";
+import ProjectImage from "./ProjectImage.astro";
+import ResearchVisual from "./ResearchVisual.astro";
+import InsureGptVisual from "./InsureGptVisual.astro";
+
+interface Props {
+  visual: "datahub" | "onboarding" | "lab" | "research" | "insuregpt";
+  eager?: boolean;
+}
+const {visual, eager = false} = Astro.props;
+---
+
+{visual === "datahub" ? (
+  <DataVisual />
+) : visual === "research" ? (
+  <ResearchVisual />
+) : visual === "insuregpt" ? (
+  <InsureGptVisual />
+) : (
+  <ProjectImage visual={visual} eager={eager} />
+)}

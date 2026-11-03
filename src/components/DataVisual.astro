@@ -1,0 +1,150 @@
+---
+const nodes = [
+  {
+    x: 42,
+    y: 55,
+    label: "01 / APPLICATIONS",
+    title: "React + TypeScript",
+    detail: "Micro-frontends · State · APIs",
+    light: false
+  },
+  {
+    x: 354,
+    y: 55,
+    label: "02 / SHARED PLATFORM",
+    title: "Shared libraries",
+    detail: "Module Federation · Auth · Singletons",
+    light: true
+  },
+  {
+    x: 42,
+    y: 237,
+    label: "03 / ENGINEERING QUALITY",
+    title: "Cypress + Vitest",
+    detail: "BDD · E2E · CI/CD",
+    light: false
+  },
+  {
+    x: 354,
+    y: 237,
+    label: "04 / AUTOMATION",
+    title: "AWS workflows",
+    detail: "Step Functions · Glue · S3 · DynamoDB",
+    light: false
+  }
+];
+---
+
+<div class="data-visual">
+  <div class="visual-window-bar">
+    <span class="window-dots" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+    <span>vanguard / platform engineering</span>
+    <span aria-hidden="true">↗</span>
+  </div>
+  <svg
+    viewBox="0 0 640 405"
+    fill="none"
+    role="img"
+    aria-labelledby="system-map-title system-map-description"
+  >
+    <title id="system-map-title">Micro-frontends, shared platforms, testing, and AWS workflows</title>
+    <desc id="system-map-description">
+      An illustrative capability map covering React and TypeScript
+      micro-frontends, Module Federation, shared authentication and
+      authorization libraries, Cypress and Vitest testing, and AWS Step
+      Functions workflows with Glue, S3, and DynamoDB. It is not an internal
+      architecture specification.
+    </desc>
+    <defs>
+      <pattern
+        id="map-grid"
+        width="24"
+        height="24"
+        patternUnits="userSpaceOnUse"
+      >
+        <circle cx="1" cy="1" r="1" fill="#ffffff" opacity=".1" />
+      </pattern>
+      <linearGradient
+        id="map-glow"
+        x1="0"
+        y1="0"
+        x2="640"
+        y2="400"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#7aa898" stop-opacity=".1" />
+        <stop offset="1" stop-color="#7aa898" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+    <rect width="640" height="405" fill="url(#map-grid)" />
+    <rect width="640" height="405" fill="url(#map-glow)" />
+    <path
+      d="M286 113h68M320 113v182M286 295h68"
+      stroke="#81a595"
+      stroke-width="1.5"
+      stroke-dasharray="4 5"
+    />
+    <circle cx="320" cy="204" r="6" fill="#ffa078" />
+    {nodes.map(node => (
+      <g>
+        <rect
+          x={node.x}
+          y={node.y}
+          width="244"
+          height="116"
+          rx="8"
+          fill={node.light ? "#e9e5d9" : "#233b36"}
+          stroke={node.light ? "#e9e5d9" : "#729383"}
+          stroke-opacity={node.light ? "1" : ".55"}
+        />
+        <text
+          x={node.x + 18}
+          y={node.y + 27}
+          fill={node.light ? "#596b60" : "#adbdaf"}
+          font-family="monospace"
+          font-size="10"
+          letter-spacing="1.2"
+        >
+          {node.label}
+        </text>
+        <text
+          x={node.x + 18}
+          y={node.y + 62}
+          fill={node.light ? "#213c33" : "#f5f3ec"}
+          font-family="sans-serif"
+          font-size="21"
+          font-weight="600"
+        >
+          {node.title}
+        </text>
+        <text
+          x={node.x + 18}
+          y={node.y + 89}
+          fill={node.light ? "#596b60" : "#adbdaf"}
+          font-family="sans-serif"
+          font-size="10"
+        >
+          {node.detail}
+        </text>
+      </g>
+    ))}
+    <text
+      x="320"
+      y="384"
+      text-anchor="middle"
+      fill="#adbdaf"
+      font-family="monospace"
+      font-size="10"
+      letter-spacing="1.2"
+    >
+      APPLICATION OWNERSHIP + REUSABLE FOUNDATIONS
+    </text>
+  </svg>
+  <p class="data-visual-caption">
+    Illustrative capability map / CloudFormation
+  </p>
+</div>

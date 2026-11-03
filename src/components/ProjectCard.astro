@@ -1,0 +1,42 @@
+---
+import type {CollectionEntry} from "astro:content";
+import Icon from "./Icon.astro";
+import ProjectVisual from "./ProjectVisual.astro";
+
+interface Props {
+  project: CollectionEntry<"work">;
+}
+const {project} = Astro.props;
+---
+
+<article class="project-card">
+  <a
+    class="project-image-link"
+    href={`/work/${project.id}/`}
+    data-project={project.id}
+    aria-label={`Explore ${project.data.shortTitle}`}
+  >
+    <ProjectVisual visual={project.data.visual} />
+  </a>
+  <div class="project-card-meta mono">
+    <span>
+      {String(project.data.order).padStart(2, "0")} /{" "}
+      {project.data.client.toUpperCase()}
+    </span>
+    <span>{project.data.category}</span>
+  </div>
+  <h3>
+    <a href={`/work/${project.id}/`} data-project={project.id}>
+      {project.data.shortTitle}
+      <span class="project-open-icon">
+        <Icon name="diagonal" size={25} />
+      </span>
+    </a>
+  </h3>
+  <p>{project.data.summary}</p>
+  <ul class="project-tags" aria-label="Technologies">
+    {project.data.tags.slice(0, 3).map(tag => (
+      <li>{tag}</li>
+    ))}
+  </ul>
+</article>

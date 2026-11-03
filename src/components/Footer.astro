@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+import {profile} from "../data/profile";
+---
+
+<footer class="site-footer shell">
+  <a class="footer-name" href="/">
+    Indraneel Vairagare<span class="accent">.</span>
+  </a>
+  <p>Thoughtfully made, down to the details.</p>
+  <div class="footer-links">
+    <a href={profile.github} target="_blank" rel="noopener noreferrer">
+      GitHub <Icon name="diagonal" size={14} />
+    </a>
+    <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+      LinkedIn <Icon name="diagonal" size={14} />
+    </a>
+    <a href="#main">Back to top ↑</a>
+  </div>
+  <span class="footer-copyright">© {new Date().getFullYear()}</span>
+</footer>

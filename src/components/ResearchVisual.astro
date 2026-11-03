@@ -1,0 +1,160 @@
+---
+const tracks = [
+  {
+    color: "#9b432a",
+    path: "M66 210C94 195 113 171 139 169S183 190 212 165 241 117 281 111 325 136 362 113",
+    x: 362,
+    y: 113,
+    angle: -30,
+    labelX: 56,
+    labelY: 234,
+    label: "TRACK / A"
+  },
+  {
+    color: "#315e4b",
+    path: "M95 79C134 67 155 80 177 104S218 153 253 149 282 170 309 188 365 201 392 181 431 161 471 168 520 143 565 123",
+    x: 565,
+    y: 123,
+    angle: -25,
+    labelX: 70,
+    labelY: 56,
+    label: "TRACK / B"
+  },
+  {
+    color: "#426681",
+    path: "M337 231C357 224 365 197 379 185S414 168 436 141 443 100 471 81 522 87 555 64",
+    x: 555,
+    y: 64,
+    angle: -25,
+    labelX: 300,
+    labelY: 252,
+    label: "TRACK / C"
+  }
+];
+const steps = ["Capture", "Identify", "Track", "Analyze"];
+---
+
+<div class="project-illustration research-stage">
+  <div class="research-sheet">
+    <div class="research-sheet-header">
+      <strong>
+        RABiTPy<span>.</span>
+      </strong>
+      <span class="mono">FROM FRAMES TO FINDINGS</span>
+    </div>
+    <svg
+      viewBox="0 0 640 350"
+      fill="none"
+      role="img"
+      aria-label="Conceptual bacterial trajectories and the RABiTPy capture, identification, tracking, and analysis workflow. This is an illustration, not experimental data."
+    >
+      <defs>
+        <pattern
+          id="research-grid"
+          width="22"
+          height="22"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle cx="1" cy="1" r=".8" fill="#a0afa0" opacity=".45" />
+        </pattern>
+      </defs>
+      <rect x="20" y="15" width="600" height="255" rx="5" fill="#f0f4eb" />
+      <rect
+        x="20"
+        y="15"
+        width="600"
+        height="255"
+        rx="5"
+        fill="url(#research-grid)"
+      />
+      {tracks.map(track => (
+        <g>
+          <path
+            d={track.path}
+            stroke={track.color}
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-dasharray="4 5"
+          />
+          <g
+            transform={`translate(${track.x} ${track.y}) rotate(${track.angle})`}
+          >
+            <rect
+              x="-13"
+              y="-5"
+              width="26"
+              height="10"
+              rx="5"
+              fill={track.color}
+            />
+            <rect
+              x="-18"
+              y="-10"
+              width="36"
+              height="20"
+              rx="3"
+              stroke={track.color}
+              stroke-width="1"
+              opacity=".5"
+            />
+          </g>
+          <text
+            x={track.labelX}
+            y={track.labelY}
+            fill={track.color}
+            font-family="monospace"
+            font-size="10"
+            letter-spacing="1"
+          >
+            {track.label}
+          </text>
+        </g>
+      ))}
+      <circle cx="139" cy="169" r="3" fill="#9b432a" />
+      <circle cx="281" cy="111" r="3" fill="#9b432a" />
+      <circle cx="177" cy="104" r="3" fill="#315e4b" />
+      <circle cx="392" cy="181" r="3" fill="#315e4b" />
+      <circle cx="436" cy="141" r="3" fill="#426681" />
+      {steps.map((step, index) => (
+        <g>
+          <rect
+            x={20 + index * 155}
+            y="290"
+            width="135"
+            height="43"
+            rx="4"
+            stroke="#c8d1c3"
+          />
+          <text
+            x={32 + index * 155}
+            y="317"
+            fill="#315e4b"
+            font-family="monospace"
+            font-size="10"
+          >
+            0{index + 1}
+          </text>
+          <text
+            x={58 + index * 155}
+            y="317"
+            fill="#253c32"
+            font-family="sans-serif"
+            font-size="13"
+          >
+            {step}
+          </text>
+          {index < steps.length - 1 && (
+            <path
+              d={`M${158 + index * 155} 311h10m-4-3 4 3-4 3`}
+              stroke="#68816b"
+              stroke-width="1"
+            />
+          )}
+        </g>
+      ))}
+    </svg>
+  </div>
+  <span class="image-figure mono">
+    CONCEPTUAL TRACKING ILLUSTRATION / RESEARCH SOFTWARE
+  </span>
+</div>
