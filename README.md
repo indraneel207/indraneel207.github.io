@@ -96,6 +96,8 @@ The existing GitHub Pages workflow remains the publishing path:
 
 GitHub Pages should serve the root of the `gh-pages` branch. Pull requests to `main` run format checks and a separate build/browser validation workflow. This migration does not change repository hosting settings.
 
+Keep `public/.nojekyll`: Astro copies this empty marker to `dist/.nojekyll`, which the deployment action publishes at the root of `gh-pages`. It disables Jekyll processing so GitHub Pages serves Astro's `_astro/` directory, including stylesheets, fonts, scripts, and optimized images. The generated-site tests require this marker before deployment. See [GitHub's static-site publishing guidance](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+
 The existing Google Analytics measurement ID is preserved. Project opens, resume clicks, and email clicks have named events. Theme preference is stored locally; the email-copy action provides an accessible status message and retains a normal mail link.
 
 ## Docker

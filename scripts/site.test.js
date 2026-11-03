@@ -70,3 +70,13 @@ test("social preview and sitemap are included in the static output", () => {
   assert.ok(fs.statSync(path.join(output, "social-preview.png")).size > 0);
   assert.ok(fs.existsSync(path.join(output, "sitemap-index.xml")));
 });
+
+test("GitHub Pages output bypasses Jekyll to preserve Astro assets", () => {
+  assert.ok(
+    fs.existsSync(path.join(output, ".nojekyll")),
+    "The publishing root must contain .nojekyll so Pages serves _astro assets"
+  );
+  const assets = fs.readdirSync(path.join(output, "_astro"));
+  assert.ok(assets.some(file => file.endsWith(".css")));
+  assert.ok(assets.some(file => file.endsWith(".js")));
+});
