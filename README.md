@@ -54,8 +54,8 @@ These instructions will get you a copy of the project up and running on your loc
 You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer or use [Docker](https://www.docker.com/products/docker-desktop).
 
 ```
-node@v10.16.0 or higher
-npm@6.9.0 or higher
+node@v20 or higher
+npm@v10 or higher
 git@2.17.1 or higher
 ```
 ### Docker Commands
@@ -77,13 +77,6 @@ git clone https://github.com/saadpasta/developerFolio.git
 # Go into the repository
 cd developerFolio
 
-# Setup default environment variables
-
-# For Linux
-cp env.example .env
-# For Windows
-copy env.example .env
-
 # Install dependencies
 npm install
 
@@ -93,58 +86,97 @@ npm start
 
 ## Linking Portfolio to GitHub
 
-Generate a classic GitHub personal access token following these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic) (make sure you don't select any scope just generate a simple token). If you are using [GitHub Actions](#configuring-github-actions-recommended) to deploy your portfolio you can skip this section.
+The site uses the JSON snapshots checked into this repository:
 
-1. Create a file called .env in the root directory of your project (if not done already in section: [How To Use](#how-to-use))
+- `public/profile.json` supplies the GitHub profile and pinned projects.
+- `public/blogs.json` supplies the Medium blog list.
 
-Note: Configuring environment variables before deploying your portfolio is highly recommended as some components depend on API data. 
+`npm start` and `npm run build` validate these files and use their committed
+contents. They do not call GitHub or Medium and do not require a `.env` file.
+The browser loads the JSON from this site's own hosting. Counts and profile
+information stay at their saved values until you refresh and publish the files.
+
+### Refresh snapshots locally
+
+1. Copy `env.example` to `.env` (`cp env.example .env` on macOS/Linux or
+   `copy env.example .env` on Windows).
+2. Configure your local credentials and usernames:
+
+```dotenv
+GITHUB_TOKEN="YOUR GITHUB TOKEN"
+GITHUB_USERNAME="YOUR GITHUB USERNAME"
+USE_GITHUB_DATA="true"
+MEDIUM_USERNAME="YOUR MEDIUM USERNAME"
+```
+
+Use a GitHub token that can read your profile and pinned repositories. Existing
+local configurations using `REACT_APP_GITHUB_TOKEN` are also supported by the
+refresh script. Keep `.env` ignored; credentials are only used for the local
+refresh and are never written to the JSON snapshots.
+
+3. Refresh the configured sources, review the changes, and publish them:
 
 ```bash
-- DeveloperFolio
-  - node_modules
-  - public
-  - src
-  - .env         <-- create it here
-  - env.example  <-- this is the base file
-  - .gitignore
-  - package-lock.json
-  - package.json
+npm run refresh:data
+npm run validate:data
+git diff -- public/profile.json public/blogs.json
+git add public/profile.json public/blogs.json
+git commit -m "Refresh portfolio data"
+git push
 ```
 
-2. Inside the .env file, add key `REACT_APP_GITHUB_TOKEN` and assign your GitHub token like this, also add your username as `GITHUB_USERNAME`
+To refresh just one source:
 
-```env
-// .env
-REACT_APP_GITHUB_TOKEN = "YOUR GITHUB TOKEN HERE"
-GITHUB_USERNAME = "YOUR GITHUB USERNAME"
-USE_GITHUB_DATA = "true"
+```bash
+npm run refresh:data -- --github
+npm run refresh:data -- --medium
 ```
 
-Set `showGithubProfile` to true or false to show Contact Profile using GitHub, defaults to false.
+With no flags, `USE_GITHUB_DATA="true"` enables the GitHub refresh and a nonempty
+`MEDIUM_USERNAME` enables the Medium refresh. Explicit flags select only those
+sources. All selected responses must pass validation before either snapshot is
+changed. Network failures, invalid JSON, API errors (including GitHub GraphQL
+errors returned with HTTP 200), and incomplete repository data leave the saved
+snapshots intact. Each validated file is replaced atomically and formatted for
+review. A failed refresh exits with a nonzero status.
 
-**Warning:** Treat your tokens like passwords and keep them secret. When working with the API, use tokens as environment variables instead of hardcoding them into your programs.
+You can also edit the JSON manually and run `npm run validate:data`. Preserve
+`data.user` and `data.user.pinnedItems.edges[].node` in `profile.json`. Each
+repository needs `id`, `name`, `description`, `url`, `forkCount`, `stargazerCount`,
+`diskUsage`, and `primaryLanguage` (an object with `name` and `color`, or `null`).
+The older `stargazers.totalCount` field is also accepted. An empty pinned list
+hides the projects section. The refresh script uses `stargazerCount`.
 
-Note: Open Source Projects section only show pinned items of your GitHub.
-If you are seeing something as shown below, follow these [instructions](https://docs.github.com/en/enterprise/2.13/user/articles/pinning-items-to-your-profile).
-
-![ERROR](https://i.imgur.com/Hj6mu1K.png)
-
-If the above solution still doesn't work, visit the [wiki page](https://github.com/saadpasta/developerFolio/wiki/Github-Setup-For-Open-Source-Projects).
+Set `openSource.display` and `openSource.showGithubProfile` in `src/portfolio.js`
+to control the GitHub sections. Refreshing pins uses the repositories pinned on
+your GitHub profile; manual edits can supply a different project list.
 
 ## Linking blogs section to Medium
 
-Optionally, you can link the blogs section to your medium user account:
+Set `MEDIUM_USERNAME` in your local `.env` and run
+`npm run refresh:data -- --medium`. Leave it empty to skip Medium when refreshing
+all configured sources. The deployment workflow does not need this variable.
 
-* Inside the .env file, add key `MEDIUM_USERNAME` and assign your Medium username
+The blog snapshot uses this structure:
 
-```env
-// .env
-MEDIUM_USERNAME = "YOUR MEDIUM USERNAME"
+```json
+{
+  "items": [
+    {
+      "title": "Example post",
+      "link": "https://medium.com/@your-username/example-post",
+      "content": "<p>A short description of the post.</p>"
+    }
+  ]
+}
 ```
 
-* For Github Action, change the environment variable `MEDIUM_USERNAME` in `.github/workflows/deploy.yml`
+Use `{"items": []}` for an empty list. The initial committed snapshot has no
+posts. Failed refreshes preserve the previous list rather than replacing it
+with an empty fallback.
 
-Set `displayMediumBlogs` to true or false in portofolio.js to display fetched Medium blogs, defaults to true.
+Set `blogSection.displayMediumBlogs` to the string `"true"` in `src/portfolio.js`
+to show this snapshot, or `"false"` to use `blogSection.blogs` from that file.
 
 ## Change and customize every section according to your need.
 
@@ -215,7 +247,13 @@ We highly recommend to read through the [Deploying on GitHub Pages](https://crea
 #### Configuring GitHub Actions (Recommended)
 First you should enable, GitHub Actions for the repository you use.
 
-The Profile and the Repository information from GitHub is only created at the time of deploy and the site needs to be redeployed if those information needs to be updated. So, a configurable [CRON Job](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events) is setup which deploys your site every week, so that once you update your profile on GitHub it is shown on your portfolio. You can also trigger it manually using `workflow_dispatch` event, see [this guide](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch) on how to do that.
+The workflow builds the committed JSON snapshots and deploys on pushes to
+`main` or a manual `workflow_dispatch`. It does not refresh data or run on a
+weekly schedule. To publish new profile, project, or blog data, refresh the
+snapshots locally and commit and push them alongside your code changes.
+
+The automatic `secrets.GITHUB_TOKEN` is used only by the deployment action to
+publish the site. No profile-fetch token or Medium username is needed in CI.
 
 - When you are done with the configuration, we highly recommend to read through the [GitHub Actions Configuring a workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow) docs.
 

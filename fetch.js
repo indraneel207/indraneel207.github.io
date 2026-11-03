@@ -1,142 +1,193 @@
-fs = require("fs");
 const https = require("https");
-process = require("process");
-require("dotenv").config();
+const path = require("path");
+const {
+  PUBLIC_DIR,
+  validateProfile,
+  validateBlogs,
+  writeSnapshot
+} = require("./scripts/snapshots");
 
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
-const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
-const USE_GITHUB_DATA = process.env.USE_GITHUB_DATA;
-const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME;
+function requestJSON(options, body) {
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, res => {
+      if (res.statusCode !== 200) {
+        res.resume();
+        reject(
+          new Error(`${options.hostname} returned HTTP ${res.statusCode}.`)
+        );
+        return;
+      }
+      let data = "";
+      res.setEncoding("utf8");
+      res.on("data", chunk => {
+        data += chunk;
+      });
+      res.on("error", reject);
+      res.on("aborted", () =>
+        reject(new Error("API response was interrupted."))
+      );
+      res.on("end", () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (error) {
+          reject(new Error(`${options.hostname} returned invalid JSON.`));
+        }
+      });
+    });
+    req.on("error", reject);
+    req.setTimeout(30000, () => {
+      req.destroy(new Error(`${options.hostname} request timed out.`));
+    });
+    req.end(body);
+  });
+}
 
-const ERR = {
-  noUserName:
-    "Github Username was found to be undefined. Please set all relevant environment variables.",
-  requestFailed:
-    "The request to GitHub didn't succeed. Check if GitHub token in your .env file is correct.",
-  requestMediumFailed:
-    "The request to Medium didn't succeed. Check if Medium username in your .env file is correct."
-};
-if (USE_GITHUB_DATA === "true") {
-  if (GITHUB_USERNAME === undefined) {
-    throw new Error(ERR.noUserName);
+async function fetchProfile(env, getJSON) {
+  // Accept the template's old variable name for existing local .env files.
+  const token = env.GITHUB_TOKEN || env.REACT_APP_GITHUB_TOKEN;
+  if (!token || !env.GITHUB_USERNAME) {
+    throw new Error("Set GITHUB_TOKEN and GITHUB_USERNAME in your local .env.");
   }
-
-  console.log(`Fetching profile data for ${GITHUB_USERNAME}`);
-  var data = JSON.stringify({
-    query: `
-{
-  user(login:"${GITHUB_USERNAME}") { 
-    name
-    bio
-    avatarUrl
-    location
-    pinnedItems(first: 6, types: [REPOSITORY]) {
-      totalCount
-      edges {
-          node {
-            ... on Repository {
-              name
-              description
-              forkCount
-              stargazers {
-                totalCount
-              }
-              url
-              id
-              diskUsage
-              primaryLanguage {
-                name
-                color
+  const profile = await getJSON(
+    {
+      hostname: "api.github.com",
+      path: "/graphql",
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "User-Agent": "Node",
+        "Content-Type": "application/json"
+      }
+    },
+    JSON.stringify({
+      query: `query PortfolioProfile($login: String!) {
+        user(login: $login) {
+          id
+          name
+          bio
+          avatarUrl
+          location
+          pinnedItems(first: 6, types: [REPOSITORY]) {
+            totalCount
+            edges {
+              node {
+                ... on Repository {
+                  id
+                  name
+                  description
+                  forkCount
+                  stargazerCount
+                  url
+                  diskUsage
+                  primaryLanguage { name color }
+                }
               }
             }
           }
         }
-      }
-    }
-}
-`
-  });
-  const default_options = {
-    hostname: "api.github.com",
-    path: "/graphql",
-    port: 443,
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
-      "User-Agent": "Node"
-    }
-  };
-
-  const req = https.request(default_options, res => {
-    let data = "";
-
-    console.log(`statusCode: ${res.statusCode}`);
-    if (res.statusCode !== 200) {
-      throw new Error(ERR.requestFailed);
-    }
-
-    res.on("data", d => {
-      data += d;
-    });
-    res.on("end", () => {
-      fs.writeFile("./public/profile.json", data, function (err) {
-        if (err) return console.log(err);
-        console.log("saved file to public/profile.json");
-      });
-    });
-  });
-
-  req.on("error", error => {
-    throw error;
-  });
-
-  req.write(data);
-  req.end();
-}
-
-if (MEDIUM_USERNAME !== undefined) {
-  console.log(`Fetching Medium blogs data for ${MEDIUM_USERNAME}`);
-  const writeMediumFallback = error => {
-    console.warn(`${ERR.requestMediumFailed} ${error}`);
-    fs.writeFile(
-      "./public/blogs.json",
-      JSON.stringify({items: []}),
-      writeError => {
-        if (writeError) {
-          console.warn(`Could not write fallback blog data: ${writeError}`);
+      }`,
+      variables: {login: env.GITHUB_USERNAME}
+    })
+  );
+  validateProfile(profile);
+  const user = profile.data.user;
+  // Store only fields used by the site, omitting API metadata and errors.
+  return {
+    data: {
+      user: {
+        ...(user.id ? {id: user.id} : {}),
+        name: user.name,
+        bio: user.bio,
+        avatarUrl: user.avatarUrl,
+        location: user.location,
+        pinnedItems: {
+          totalCount: user.pinnedItems.totalCount,
+          edges: user.pinnedItems.edges.map(({node}) => ({
+            node: {
+              id: node.id,
+              name: node.name,
+              description: node.description,
+              forkCount: node.forkCount,
+              stargazerCount: node.stargazerCount ?? node.stargazers.totalCount,
+              url: node.url,
+              diskUsage: node.diskUsage,
+              primaryLanguage: node.primaryLanguage
+                ? {
+                    name: node.primaryLanguage.name,
+                    color: node.primaryLanguage.color
+                  }
+                : null
+            }
+          }))
         }
       }
-    );
-  };
-  const options = {
-    hostname: "api.rss2json.com",
-    path: `/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`,
-    port: 443,
-    method: "GET"
-  };
-
-  const req = https.request(options, res => {
-    let mediumData = "";
-
-    console.log(`statusCode: ${res.statusCode}`);
-    if (res.statusCode !== 200) {
-      writeMediumFallback(`HTTP ${res.statusCode}`);
-      res.resume();
-      return;
     }
-
-    res.on("data", d => {
-      mediumData += d;
-    });
-    res.on("end", () => {
-      fs.writeFile("./public/blogs.json", mediumData, function (err) {
-        if (err) return console.log(err);
-        console.log("saved file to public/blogs.json");
-      });
-    });
-  });
-
-  req.on("error", writeMediumFallback);
-
-  req.end();
+  };
 }
+
+async function fetchBlogs(env, getJSON) {
+  if (!env.MEDIUM_USERNAME) {
+    throw new Error("Set MEDIUM_USERNAME in your local .env.");
+  }
+  const feed = `https://medium.com/feed/@${env.MEDIUM_USERNAME}`;
+  const blogs = await getJSON({
+    hostname: "api.rss2json.com",
+    path: `/v1/api.json?rss_url=${encodeURIComponent(feed)}`,
+    method: "GET"
+  });
+  validateBlogs(blogs);
+  return {
+    items: blogs.items.map(({title, link, content}) => ({title, link, content}))
+  };
+}
+
+async function refreshData({
+  env = process.env,
+  args = [],
+  directory = PUBLIC_DIR,
+  getJSON = requestJSON,
+  log = console.log
+} = {}) {
+  if (args.some(arg => !["--github", "--medium"].includes(arg))) {
+    throw new Error("Usage: npm run refresh:data -- [--github] [--medium]");
+  }
+  const sources = [];
+  const github = args.length
+    ? args.includes("--github")
+    : env.USE_GITHUB_DATA === "true";
+  const medium = args.length
+    ? args.includes("--medium")
+    : Boolean(env.MEDIUM_USERNAME);
+  if (github) sources.push(["profile.json", fetchProfile]);
+  if (medium) sources.push(["blogs.json", fetchBlogs]);
+  if (sources.length === 0) {
+    throw new Error(
+      "No sources configured. Set USE_GITHUB_DATA=true or MEDIUM_USERNAME, or select --github or --medium."
+    );
+  }
+
+  // Fetch and validate every selected source before changing either snapshot.
+  const snapshots = await Promise.all(
+    sources.map(async ([filename, fetchData]) => [
+      filename,
+      await fetchData(env, getJSON)
+    ])
+  );
+  for (const [filename, data] of snapshots) {
+    writeSnapshot(path.join(directory, filename), data);
+    log(`Updated public/${filename}`);
+  }
+  log(
+    "Review the JSON diff, then commit and push the snapshots to publish them."
+  );
+}
+
+if (require.main === module) {
+  require("dotenv").config({path: path.join(__dirname, ".env")});
+  refreshData({args: process.argv.slice(2)}).catch(error => {
+    console.error(`Data refresh failed: ${error.message}`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = {refreshData, requestJSON};
