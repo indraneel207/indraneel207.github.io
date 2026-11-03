@@ -4,10 +4,12 @@ import Button from "../../components/button/Button";
 import {openSource, socialMediaLinks} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
 import Loading from "../../containers/loading/Loading";
+
+const GithubRepoCard = lazy(() =>
+  import("../../components/githubRepoCard/GithubRepoCard")
+);
+
 export default function Projects() {
-  const GithubRepoCard = lazy(() =>
-    import("../../components/githubRepoCard/GithubRepoCard")
-  );
   const FailedLoading = () => null;
   const renderLoader = () => <Loading />;
   const [repo, setrepo] = useState([]);
@@ -24,7 +26,11 @@ export default function Projects() {
           throw result;
         })
         .then(response => {
-          setrepoFunction(response.data.user.pinnedItems.edges);
+          const edges = response?.data?.user?.pinnedItems?.edges;
+          if (!Array.isArray(edges)) {
+            throw new Error("profile.json contains no pinned repository data.");
+          }
+          setrepoFunction(edges.filter(edge => edge?.node?.id));
         })
         .catch(function (error) {
           console.error(
@@ -39,10 +45,7 @@ export default function Projects() {
   function setrepoFunction(array) {
     setrepo(array);
   }
-  if (
-    !(typeof repo === "string" || repo instanceof String) &&
-    openSource.display
-  ) {
+  if (Array.isArray(repo) && repo.length > 0 && openSource.display) {
     return (
       <Suspense fallback={renderLoader()}>
         <div className="main" id="opensource">
@@ -56,16 +59,9 @@ export default function Projects() {
             />
           </h1>
           <div className="repo-cards-div-main">
-            {repo.map((v, i) => {
-              if (!v) {
-                console.error(
-                  `Github Object for repository number : ${i} is undefined`
-                );
-              }
-              return (
-                <GithubRepoCard repo={v} key={v.node.id} isDark={isDark} />
-              );
-            })}
+            {repo.map(v => (
+              <GithubRepoCard repo={v} key={v.node.id} isDark={isDark} />
+            ))}
           </div>
           <Button
             text={"More Projects"}
