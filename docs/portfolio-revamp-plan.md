@@ -185,12 +185,13 @@ The core redesign is implemented on `codex/portfolio-revamp`. The sections above
 Local verification after cleanup:
 
 - Astro diagnostics: 23 files, zero errors or warnings. Production build and snapshot validation pass.
-- All 36 tests pass: 18 data-refresh tests, three generated-site tests, and 15 browser tests. Coverage includes all routes at 320, 390, 768, 1024, and 1440px, both themes, automated WCAG AA checks, keyboard interactions, unavailable storage, clipboard fallback, and no-JavaScript navigation.
+- The suite includes 37 tests: 18 data-refresh tests, four generated-site tests, and 15 browser tests. Coverage includes all routes at 320, 390, 768, 1024, and 1440px, both themes, automated WCAG AA checks, keyboard interactions, unavailable storage, clipboard fallback, no-JavaScript navigation, and the GitHub Pages publishing marker.
 - Additional browser checks verified recommendation disclosures by keyboard at narrow and wide viewports and with JavaScript disabled. Automated accessibility checks do not establish complete WCAG conformance.
 - First-party JavaScript totals 74,706 bytes (73.0 KiB) gzip when combining all emitted JavaScript files and separately compressed homepage inline scripts. This is an artifact estimate, below the proposed 150 KiB budget; it excludes third-party Google Analytics and is not a measured network transfer total.
 - The largest generated WebP screenshot is 131,956 bytes (128.9 KiB), below the proposed 200 KiB image budget. The lead Vanguard visual uses HTML/SVG rather than a raster image.
 - Three cold-cache mobile Chrome runs against the local production preview recorded LCP at 504, 488, and 488ms and CLS at 0. The runs used a 390×844 viewport, 4× CPU slowdown, 150ms network latency, 1.6 Mbps download/750 Kbps upload settings, reduced motion, and no concurrent browser tests. These are local lab observations; production hosting and third-party analytics were not measured, and INP was not measured.
 - Removed 39 obsolete tracked template files, two ignored `.DS_Store` files, 35 empty legacy directories, and the ignored CRA `build/` output. The two imported screenshots, license, local snapshot tools, and snapshot tests remain.
+- The first live deployment exposed a hosting omission: GitHub Pages filtered `_astro/` because the publishing root lacked `.nojekyll`, leaving the CSS and optimized images unavailable even though they existed on `gh-pages`. The correction adds `public/.nojekyll`, verifies that the marker reaches `dist/`, and requires it in the pre-deployment tests. The correction must be redeployed before the live asset requests can be verified.
 
 Remaining launch work:
 
