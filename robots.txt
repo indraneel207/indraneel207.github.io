@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://indraneel207.github.io/sitemap-index.xml
+Sitemap: https://indraneel.dev/sitemap-index.xml
