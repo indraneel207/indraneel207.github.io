@@ -15,6 +15,7 @@ const {
   description = profile.description
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const productionHostname = Astro.site?.hostname;
 ---
 
 <!doctype html>
@@ -73,12 +74,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.documentElement.classList.add("js");
       })();
     </script>
-    <script is:inline>
+    <script is:inline define:vars={{productionHostname}}>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function () {
         window.dataLayer.push(arguments);
       };
-      if (window.location.hostname === "indraneel207.github.io") {
+      if (
+        window.location.hostname === productionHostname ||
+        window.location.hostname === `www.${productionHostname}`
+      ) {
         const analytics = document.createElement("script");
         analytics.async = true;
         analytics.src =

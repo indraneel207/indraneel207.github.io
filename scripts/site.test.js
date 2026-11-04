@@ -25,10 +25,7 @@ test("all portfolio routes contain meaningful pre-rendered content and metadata"
     );
     assert.match(html, /<main[^>]*id="main"/);
     assert.match(html, /name="description" content="[^"]+"/);
-    assert.match(
-      html,
-      /rel="canonical" href="https:\/\/indraneel207.github.io/
-    );
+    assert.match(html, /rel="canonical" href="https:\/\/indraneel\.dev\//);
     if (page.startsWith("work/")) {
       assert.match(html, /The challenge/);
       assert.match(html, /What I owned/);
@@ -68,10 +65,25 @@ test("generated local links, section anchors, and images resolve", () => {
 
 test("social preview and sitemap are included in the static output", () => {
   assert.ok(fs.statSync(path.join(output, "social-preview.png")).size > 0);
-  assert.ok(fs.existsSync(path.join(output, "sitemap-index.xml")));
+  assert.match(
+    fs.readFileSync(path.join(output, "sitemap-index.xml"), "utf8"),
+    /https:\/\/indraneel\.dev\/sitemap-0\.xml/
+  );
+  assert.match(
+    fs.readFileSync(path.join(output, "sitemap-0.xml"), "utf8"),
+    /https:\/\/indraneel\.dev\/work\/rabitpy\//
+  );
+  assert.match(
+    fs.readFileSync(path.join(output, "robots.txt"), "utf8"),
+    /Sitemap: https:\/\/indraneel\.dev\/sitemap-index\.xml/
+  );
 });
 
-test("GitHub Pages output bypasses Jekyll to preserve Astro assets", () => {
+test("GitHub Pages output preserves the custom domain and Astro assets", () => {
+  assert.equal(
+    fs.readFileSync(path.join(output, "CNAME"), "utf8").trim(),
+    "indraneel.dev"
+  );
   assert.ok(
     fs.existsSync(path.join(output, ".nojekyll")),
     "The publishing root must contain .nojekyll so Pages serves _astro assets"

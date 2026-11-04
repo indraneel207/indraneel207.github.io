@@ -102,6 +102,36 @@ Keep `public/.nojekyll`: Astro copies this empty marker to `dist/.nojekyll`, whi
 
 The existing Google Analytics measurement ID is preserved. Project opens, resume clicks, and email clicks have named events. Theme preference is stored locally; the email-copy action provides an accessible status message and retains a normal mail link.
 
+### Custom domain: indraneel.dev
+
+The production URL is `https://indraneel.dev`. `astro.config.mjs` controls canonical URLs, social-preview URLs, the sitemap, and the hostname allowed to load analytics. `public/robots.txt` points to the production sitemap. `public/CNAME` is copied into `dist/` and published to `gh-pages`, preserving the custom domain across deployments.
+
+Complete the account configuration in this order:
+
+1. In [GitHub profile Settings → Pages](https://github.com/settings/pages), add `indraneel.dev` as a verified domain. In Spaceship's Advanced DNS, add the exact TXT host and value GitHub displays, then return to GitHub and verify it. Keep this TXT record. See [domain verification](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).
+2. In this repository's **Settings → Pages**, set **Custom domain** to `indraneel.dev` and save. The publishing source remains **Deploy from a branch → gh-pages → /(root)**.
+3. In Spaceship, open **Advanced DNS**, select `indraneel.dev`, and replace the default parking/website records for `@` and `www` with the records below. Retain unrelated TXT and email records. Use the default TTL. These records assume the domain uses Spaceship's nameservers.
+
+| Type  | Host  | Value                    |
+| ----- | ----- | ------------------------ |
+| A     | `@`   | `185.199.108.153`        |
+| A     | `@`   | `185.199.109.153`        |
+| A     | `@`   | `185.199.110.153`        |
+| A     | `@`   | `185.199.111.153`        |
+| CNAME | `www` | `indraneel207.github.io` |
+
+4. Deploy this source change through the existing **Build and Deploy** workflow so `gh-pages/CNAME` and the generated metadata are updated together. Check that the build still includes `.nojekyll`.
+5. Wait for the DNS check and certificate provisioning in GitHub Pages, then select **Enforce HTTPS**. DNS propagation and availability of this option can take up to 24 hours. GitHub obtains the certificate automatically; a separate paid SSL certificate is unnecessary. See [GitHub's custom-domain setup](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) and [HTTPS provisioning](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https).
+6. Check `https://indraneel.dev/`, a direct case-study URL, and `https://www.indraneel.dev/`. With both hostnames configured, GitHub Pages redirects `www` to the configured apex domain. Update the Google Analytics web stream's website URL to `https://indraneel.dev` and confirm events in Realtime; retain the existing measurement ID.
+
+Local commands for checking DNS after configuration:
+
+```sh
+dig +short indraneel.dev A
+dig +short www.indraneel.dev CNAME
+dig +short _github-pages-challenge-indraneel207.indraneel.dev TXT
+```
+
 ## Docker
 
 ```sh
